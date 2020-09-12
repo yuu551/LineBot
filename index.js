@@ -11,3 +11,7 @@ express()
   .post('/p/', (req, res) => res.json({method: "こんにちは、postさん"}))
   .post("/hook/", (req, res) => res.json({ test: "hook" }))// 追加
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
+
+  function lineBot(req, res) {
+    res.json({ test: "hook" })
+  }
