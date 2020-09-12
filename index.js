@@ -4,8 +4,8 @@ const line = require('@line/bot-sdk');
 const PORT = process.env.PORT || 3000;
 
 const config = {
-    channelSecret: 'LINE botのチャンネルシークレット',
-    channelAccessToken: 'LINE botのアクセストークン'
+    channelSecret:process.env.SECRET_KEY,
+    channelAccessToken:process.env.ACCESS_TOKEN
 };
 
 const app = express();
