@@ -1,6 +1,13 @@
 const express = require('express')
 const path = require('path')
 const PORT = process.env.PORT || 5000
+const line = require("@line/bot-sdk"); // 追加
+// 追加
+const config = {
+  channelAccessToken: process.env.ACCESS_TOKEN,
+  channelSecret: process.env.SECRET_KEY
+};
+
 
 express()
   .use(express.static(path.join(__dirname, 'public')))
@@ -14,4 +21,5 @@ express()
 
   function lineBot(req, res) {
     res.json({ test: "hook" })
+    console.log("pass"); // 追加
   }
