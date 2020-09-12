@@ -43,7 +43,7 @@ async function handleEvent(event) {
   console.log(event.message.latitude + ' : ' + event.message.longitude);
 
   // ぐるなびAPIを使うためのURLに経緯を加える
-  url = 'https://api.gnavi.co.jp/RestSearchAPI/v3/?keyid=6eecd3af974fcc7fa63d6ab8139269e6&latitude=' + event.message.latitude + '&longitude=' + event.message.longitude + '&freeword=インドカレー';
+  url = 'https://api.gnavi.co.jp/RestSearchAPI/v3/?keyid=6eecd3af974fcc7fa63d6ab8139269e6&latitude=' + event.message.latitude + '&longitude=' + event.message.longitude + '&freeword=ラーメン';
   const encodeUrl = encodeURI(url);
 
   // ぐるなびAPIに問い合わせ
@@ -51,7 +51,7 @@ async function handleEvent(event) {
 
   //レスポンスの中からcategory"ラーメン"を探索
   for(var num = 0; num <= response.data.rest.length; num++){
-    if(response.data.rest[num].category === 'インドカレー'){
+    if(response.data.rest[num].category === 'ラーメン'){
 //      console.log(response.data.rest[num]);
       hitnum = num;
       ramen_url = response.data.rest[num].url_mobile;
