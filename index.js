@@ -43,7 +43,7 @@ async function handleEvent(event) {
   console.log(event.message.latitude + ' : ' + event.message.longitude);
 
   // ぐるなびAPIを使うためのURLに経緯を加える
-  url = 'https://api.gnavi.co.jp/RestSearchAPI/v3/?keyid=6eecd3af974fcc7fa63d6ab8139269e6&latitude=' + event.message.latitude + '&longitude=' + event.message.longitude + '&freeword=カレー';
+  url = 'https://api.gnavi.co.jp/RestSearchAPI/v3/?keyid=6eecd3af974fcc7fa63d6ab8139269e6&latitude=' + event.message.latitude + '&longitude=' + event.message.longitude + '&freeword=インドカレー';
   const encodeUrl = encodeURI(url);
 
   // ぐるなびAPIに問い合わせ
