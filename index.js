@@ -11,7 +11,7 @@ const config = {
 const app = express();
 
 app.get('/', (req, res) => res.send('Hello LINE BOT!(GET)')); //ブラウザ確認用(無くても問題ない)
-app.post('/webhook', line.middleware(config), (req, res) => {
+app.post('/hook', line.middleware(config), (req, res) => {
     console.log(req.body.events);
 
     //ここのif文はdeveloper consoleの"接続確認"用なので後で削除して問題ないです。
