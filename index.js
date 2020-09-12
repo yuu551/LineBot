@@ -51,12 +51,11 @@ async function handleEvent(event) {
 
   //レスポンスの中からcategory"ラーメン"を探索
   for(var num = 0; num <= response.data.rest.length; num++){
-    if(response.data.rest[num].category === 'カレー'){
-//      console.log(response.data.rest[num]);
+   
       hitnum = num;
       ramen_url = response.data.rest[num].url_mobile;
       break;
-    }
+    
   }
 
   // ヒットしたラーメン店の住所をLINE botに返す
