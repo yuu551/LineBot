@@ -1,42 +1,72 @@
-const express = require('express')
-const path = require('path')
-const PORT = process.env.PORT || 5000
-const line = require("@line/bot-sdk"); // 追加
-// 追加
+const axios = require('axios');       
+const express = require('express');
+const line = require('@line/bot-sdk');
+const PORT = process.env.PORT || 3000;
+
 const config = {
-  channelAccessToken: process.env.ACCESS_TOKEN,
-  channelSecret: process.env.SECRET_KEY
+    channelSecret: 'LINE botのチャンネルシークレット',
+    channelAccessToken: 'LINE botのアクセストークン'
 };
-const client = new line.Client(config); // 追加
 
+const app = express();
 
-express()
-  .use(express.static(path.join(__dirname, 'public')))
-  .set('views', path.join(__dirname, 'views'))
-  .set('view engine', 'ejs')
-  .get('/', (req, res) => res.render('pages/index'))
-  .get('/g/', (req, res) => res.json({method: "こんにちは、getさん"}))
-  .post('/p/', (req, res) => res.json({method: "こんにちは、postさん"}))
-  .post("/hook/", line.middleware(config), (req, res) => lineBot(req, res)) // 変更、middlewareを追加
-  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
+app.get('/', (req, res) => res.send('Hello LINE BOT!(GET)')); //ブラウザ確認用(無くても問題ない)
+app.post('/webhook', line.middleware(config), (req, res) => {
+    console.log(req.body.events);
 
-  function lineBot(req, res) {
-    res.status(200).end(); // 変更
-    const events = req.body.events;
-    const promises = [];
-    for (let i = 0, l = events.length; i < l; i++) {
-      const ev = events[i];
-      promises.push(
-        echoman(ev)
-      );
+    //ここのif文はdeveloper consoleの"接続確認"用なので後で削除して問題ないです。
+    if(req.body.events[0].replyToken === '00000000000000000000000000000000' && req.body.events[1].replyToken === 'ffffffffffffffffffffffffffffffff'){
+        res.send('Hello LINE BOT!(POST)');
+        console.log('疎通確認用');
+        return; 
     }
-    Promise.all(promises).then(console.log("pass"));
+
+    Promise
+      .all(req.body.events.map(handleEvent))
+      .then((result) => res.json(result));
+});
+
+const client = new line.Client(config);
+
+
+async function handleEvent(event) {
+  var url
+  var ramen_url;
+  var hitnum;
+
+  // 位置情報のみに入力制限
+  if (event.type !== 'message' || event.message.type !== 'location') {
+    return Promise.resolve(null);
   }
 
-  async function echoman(ev) {
-    const pro =  await client.getProfile(ev.source.userId);
-    return client.replyMessage(ev.replyToken, {
-      type: "text",
-      text: `${pro.displayName}さん、今「${ev.message.text}」って言いました？`
-    })
+  // 取得した位置情報をログに表示
+  console.log(event.message.latitude + ' : ' + event.message.longitude);
+
+  // ぐるなびAPIを使うためのURLに経緯を加える
+  url = 'https://api.gnavi.co.jp/RestSearchAPI/v3/?keyid=6eecd3af974fcc7fa63d6ab8139269e6&latitude=' + event.message.latitude + '&longitude=' + event.message.longitude + '&range=2&freeword=インドカレー';
+  const encodeUrl = encodeURI(url);
+
+  // ぐるなびAPIに問い合わせ
+  const response = await axios.get(encodeUrl);
+
+  //レスポンスの中からcategory"ラーメン"を探索
+  for(var num = 0; num <= response.data.rest.length; num++){
+    if(response.data.rest[num].category === 'インドカレー'){
+//      console.log(response.data.rest[num]);
+      hitnum = num;
+      ramen_url = response.data.rest[num].url_mobile;
+      break;
+    }
   }
+
+  // ヒットしたラーメン店の住所をLINE botに返す
+  return client.replyMessage(event.replyToken, {
+    type: 'location',
+    title: response.data.rest[hitnum].name,
+    address: response.data.rest[hitnum].address,
+    latitude: response.data.rest[hitnum].latitude,
+    longitude: response.data.rest[hitnum].longitude
+  });
+  }
+  app.listen(PORT);
+  console.log(`Server running at ${PORT}`);
