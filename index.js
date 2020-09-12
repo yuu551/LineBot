@@ -60,11 +60,8 @@ async function handleEvent(event) {
 
   // ヒットしたラーメン店の住所をLINE botに返す
   return client.replyMessage(event.replyToken, {
-    type: 'location',
-    title: response.data.rest[hitnum].name,
-    address: response.data.rest[hitnum].address,
-    latitude: response.data.rest[hitnum].latitude,
-    longitude: response.data.rest[hitnum].longitude
+    type: 'text',
+    text: response.data.rest[hitnum].url
   });
   }
   app.listen(PORT);
