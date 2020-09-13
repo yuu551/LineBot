@@ -73,6 +73,9 @@ async function handleEvent(event) {
     curry_pic = response.data.rest[num].image_url.shop_image1;
     address = response.data.rest[num].address;
     phonenumber = response.data.rest[num].tel
+    if(curry_pic ==null){
+      curry_pic = 'https://www.google.com/imgres?imgurl=https%3A%2F%2Fimgfp.hotp.jp%2FIMGH%2F59%2F50%2FP025805950%2FP025805950_480.jpg&imgrefurl=https%3A%2F%2Fwww.hotpepper.jp%2FstrJ000242466%2F&tbnid=_x0RqUGzhU4rSM&vet=12ahUKEwizncO8yeXrAhVH6ZQKHRUfBgoQMygBegUIARDPAQ..i&docid=oi8ZHQ1w7a1a7M&w=480&h=480&q=%E3%82%A4%E3%83%B3%E3%83%89%E3%82%AB%E3%83%AC%E3%83%BC&ved=2ahUKEwizncO8yeXrAhVH6ZQKHRUfBgoQMygBegUIARDPAQ'
+    }
     console.log(shop_name);
     console.log(curry_pic);
     console.log(curry_url);
@@ -227,6 +230,9 @@ if(event.type == 'message'){
       curry_pic = response.data.rest[num].image_url.shop_image1;
       address = response.data.rest[num].address;
       phonenumber = response.data.rest[num].tel
+      if(curry_pic ==null){
+        curry_pic = 'https://www.google.com/imgres?imgurl=https%3A%2F%2Fimgfp.hotp.jp%2FIMGH%2F59%2F50%2FP025805950%2FP025805950_480.jpg&imgrefurl=https%3A%2F%2Fwww.hotpepper.jp%2FstrJ000242466%2F&tbnid=_x0RqUGzhU4rSM&vet=12ahUKEwizncO8yeXrAhVH6ZQKHRUfBgoQMygBegUIARDPAQ..i&docid=oi8ZHQ1w7a1a7M&w=480&h=480&q=%E3%82%A4%E3%83%B3%E3%83%89%E3%82%AB%E3%83%AC%E3%83%BC&ved=2ahUKEwizncO8yeXrAhVH6ZQKHRUfBgoQMygBegUIARDPAQ'
+      }
       console.log(shop_name);
       console.log(curry_pic);
       console.log(curry_url);
