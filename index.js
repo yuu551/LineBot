@@ -34,6 +34,13 @@ async function handleEvent(event) {
   var ramen_url;
   var hitnum;
 
+  if(event.text == '位置情報から検索'){
+    return client.replyMessage(event.replyToken, {
+      type: 'text',
+      text: 'メニューから自分の位置情報を送信してください！'
+    });
+  }
+
   // 位置情報のみに入力制限
   if (event.type !== 'message' || event.message.type !== 'location') {
     return Promise.resolve(null);
@@ -49,7 +56,15 @@ async function handleEvent(event) {
   // ぐるなびAPIに問い合わせ
   const response = await axios.get(encodeUrl);
 
-  //レスポンスの中からcategory"ラーメン"を探索
+  if(response.data.rest.length ==0){
+    return client.replyMessage(event.replyToken, {
+      type: 'text',
+      text: '該当店舗は存在しません。'
+    });
+  }
+
+
+  //レスポンスの中からを探索
   for(var num = 0; num <= response.data.rest.length; num++){
    
       hitnum = num;
