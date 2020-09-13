@@ -92,8 +92,30 @@ async function handleEvent(event) {
     msgs.push(msg.replymessage(curry_pic[num],curry_url[num],shop_name[num],address[num],opentime[num]));
     
   }
+  if(response.data.rest.count >2){
   // ヒットしたインドカレー店の住所をLINE botに返す
-  return client.replyMessage(event.replyToken,msgs[0]);
+  return client.replyMessage(event.replyToken,[{
+    type: 'text',
+    text: '検索結果付近の店舗はこちらです！'
+  },msgs[0],msgs[1],msgs[2]
+]);
+  }
+  if(response.data.rest.count >1){
+    // ヒットしたインドカレー店の住所をLINE botに返す
+    return client.replyMessage(event.replyToken,[{
+      type: 'text',
+      text: '検索結果付近の店舗はこちらです！'
+    },msgs[0],msgs[1]
+  ]);
+    }
+    if(response.data.rest.count >0){
+      // ヒットしたインドカレー店の住所をLINE botに返す
+      return client.replyMessage(event.replyToken,[{
+        type: 'text',
+        text: '検索結果付近の店舗はこちらです！'
+      },msgs[0]
+    ]);
+      }
 }
 
 if(event.type == 'message'){
