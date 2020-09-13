@@ -165,7 +165,7 @@ if(event.type == 'message'){
     },msgs[0],msgs[1],msgs[2]
   ]);
     }
-    if(response.data.rest.length >1){
+    else if(response.data.rest.length >1){
       // ヒットしたインドカレー店の住所をLINE botに返す
       return client.replyMessage(event.replyToken,[{
         type: 'text',
@@ -173,7 +173,7 @@ if(event.type == 'message'){
       },msgs[0],msgs[1]
     ]);
       }
-      if(response.data.rest.length >0){
+      else if(response.data.rest.length >0){
         // ヒットしたインドカレー店の住所をLINE botに返す
         return client.replyMessage(event.replyToken,[{
           type: 'text',
