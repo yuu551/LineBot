@@ -32,14 +32,14 @@ async function handleEvent(event) {
   if(event.message.text == '位置情報から検索'){
     return client.replyMessage(event.replyToken, {
       type: 'text',
-      text: 'メニューから自分の位置情報を送信してください！'
+      text: '自分の位置情報を送信してください！'
     });
   }
   ///メニューから地名で検索を押したとき
   if(event.message.text == '地名から検索'){
     return client.replyMessage(event.replyToken, {
       type: 'text',
-      text: '検索したい地名を入力してください。'
+      text: '検索したい地名を入力してください!'
     });
   }
   ///位置情報が送信されたとき
