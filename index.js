@@ -204,6 +204,8 @@ if(event.type == 'message'){
   // ぐるなびAPIに問い合わせ
   const response = await axios.get(encodeUrl);
 
+  console.log(response.data);
+
   if(response.data.error){
     return client.replyMessage(event.replyToken, {
       type: 'text',
