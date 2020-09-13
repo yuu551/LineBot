@@ -1,7 +1,7 @@
 const axios = require('axios');       
 const express = require('express');
 const line = require('@line/bot-sdk');
-const msg =require('message');
+const msg =require('messages');
 const PORT = process.env.PORT || 3000;
 
 const config = {
