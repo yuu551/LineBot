@@ -1,6 +1,7 @@
 const axios = require('axios');       
 const express = require('express');
 const line = require('@line/bot-sdk');
+const msg =require('message');
 const PORT = process.env.PORT || 3000;
 
 const config = {
@@ -87,122 +88,12 @@ async function handleEvent(event) {
     if(!opentime[num]){
       opentime[num] = '店舗へお尋ねください。'
     }
-    console.log(shop_name[num]);
-    console.log(curry_pic[num]);
-    console.log(curry_url[num]);
+   const msg1 =msg.replyMessage(curry_pic[num],curry_url[num],shop_name[num],address[num],opentime[num]);
     
   }
   // ヒットしたインドカレー店の住所をLINE botに返す
-  return client.replyMessage(event.replyToken, [{
-    type: 'text',
-    text: '一番近くの店舗はこちらです！'
-  },
-  {
-    "type": "flex",
-  "altText": "#",
-  "contents":{
-    "type": "bubble",
-  "hero": {
-    "type": "image",
-    "url": curry_pic[0],
-    "size": "full",
-    "aspectRatio": "20:13",
-    "aspectMode": "cover",
-    "action": {
-      "type": "uri",
-      "uri": curry_url[0]
-    }
-  },
-  "body": {
-    "type": "box",
-    "layout": "vertical",
-    "contents": [
-      {
-        "type": "text",
-        "text": shop_name[0],
-        "weight": "bold",
-        "size": "xl"
-      },
-      {
-        "type": "box",
-        "layout": "vertical",
-        "margin": "lg",
-        "spacing": "sm",
-        "contents": [
-          {
-            "type": "box",
-            "layout": "baseline",
-            "spacing": "sm",
-            "contents": [
-              {
-                "type": "text",
-                "text": "Place",
-                "color": "#aaaaaa",
-                "size": "sm",
-                "flex": 1
-              },
-              {
-                "type": "text",
-                "text": address[0],
-                "wrap": true,
-                "color": "#666666",
-                "size": "sm",
-                "flex": 5
-              }
-            ]
-          },
-          {
-            "type": "box",
-            "layout": "baseline",
-            "spacing": "sm",
-            "contents": [
-              {
-                "type": "text",
-                "text": "Time",
-                "color": "#aaaaaa",
-                "size": "sm",
-                "flex": 1
-              },
-              {
-                "type": "text",
-                "text": opentime[0],
-                "wrap": true,
-                "color": "#666666",
-                "size": "sm",
-                "flex": 5
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  "footer": {
-    "type": "box",
-    "layout": "vertical",
-    "spacing": "sm",
-    "contents": [
-      {
-        "type": "button",
-        "style": "link",
-        "height": "sm",
-        "action": {
-          "type": "uri",
-          "label": "WEBSITE",
-          "uri": curry_url[0]
-        }
-      },
-      {
-        "type": "spacer",
-        "size": "sm"
-      }
-    ],
-    "flex": 0
-  }
+  return client.replyMessage(event.replyToken, msg1)
 }
-  }
-]);
-  }
 
 if(event.type == 'message'){
   url = 'https://api.gnavi.co.jp/RestSearchAPI/v3/?keyid=6eecd3af974fcc7fa63d6ab8139269e6&freeword_condition=1&freeword=インドカレー,'+event.message.text
