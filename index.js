@@ -65,8 +65,17 @@ async function handleEvent(event) {
   //レスポンスの中からを探索
   for(var num = 0; num <= response.data.rest.length; num++){
    
-      hitnum = num;
-      ramen_url = response.data.rest[num].url_mobile;
+    hitnum = num;
+    shop_name = response.data.rest[num].name;
+    shop_address = response.data.rest[num].address
+    opentime = response.data.rest[num].opentime
+    curry_url = response.data.rest[num].url_mobile;
+    curry_pic = response.data.rest[num].image_url.shop_image1;
+    address = response.data.rest[num].address;
+    phonenumber = response.data.rest[num].tel
+    console.log(shop_name);
+    console.log(curry_pic);
+    console.log(curry_url);
       break;
     
   }
