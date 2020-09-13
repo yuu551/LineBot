@@ -110,6 +110,9 @@ if(event.type == 'message'){
   // ヒットしたインドカレー店の住所をLINE botに返す
   return client.replyMessage(event.replyToken, 
   {
+    "type": "flex",
+  "altText": "#",
+  "contents":{
     "type": "bubble",
   "hero": {
     "type": "image",
@@ -218,6 +221,7 @@ if(event.type == 'message'){
     ],
     "flex": 0
   }
+}
   });
 }
   }
