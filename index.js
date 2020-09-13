@@ -103,13 +103,13 @@ async function handleEvent(event) {
     "type": "bubble",
   "hero": {
     "type": "image",
-    "url": curry_pic,
+    "url": curry_pic[0],
     "size": "full",
     "aspectRatio": "20:13",
     "aspectMode": "cover",
     "action": {
       "type": "uri",
-      "uri": curry_url
+      "uri": curry_url[0]
     }
   },
   "body": {
@@ -118,7 +118,7 @@ async function handleEvent(event) {
     "contents": [
       {
         "type": "text",
-        "text": shop_name,
+        "text": shop_name[0],
         "weight": "bold",
         "size": "xl"
       },
@@ -142,7 +142,7 @@ async function handleEvent(event) {
               },
               {
                 "type": "text",
-                "text": address,
+                "text": address[0],
                 "wrap": true,
                 "color": "#666666",
                 "size": "sm",
@@ -164,7 +164,7 @@ async function handleEvent(event) {
               },
               {
                 "type": "text",
-                "text": opentime,
+                "text": opentime[0],
                 "wrap": true,
                 "color": "#666666",
                 "size": "sm",
@@ -188,7 +188,7 @@ async function handleEvent(event) {
         "action": {
           "type": "uri",
           "label": "WEBSITE",
-          "uri": curry_url
+          "uri": curry_url[0]
         }
       },
       {
