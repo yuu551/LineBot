@@ -1,4 +1,4 @@
-function replymessage (curry_pic,curry_url,shop_name,address,opentime){
+exports.replymessage = function(curry_pic,curry_url,shop_name,address,opentime){
     return [{
         type: 'text',
     text: '一番近くの店舗はこちらです！'
