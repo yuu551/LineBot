@@ -92,7 +92,7 @@ async function handleEvent(event) {
     
   }
   // ヒットしたインドカレー店の住所をLINE botに返す
-  return client.replymessage(event.replyToken, [{
+  return client.replyMessage(event.replyToken, [{
     type: 'text',
     text: '検索結果付近の店舗はこちらです！'
   },
