@@ -73,7 +73,7 @@ async function handleEvent(event) {
     
   }
 
-  // ヒットしたラーメン店の住所をLINE botに返す
+  // ヒットしたインドカレー店の住所をLINE botに返す
   return client.replyMessage(event.replyToken, [{
     type: 'text',
     text: '一番近くの店舗はこちらです！'
@@ -87,3 +87,4 @@ async function handleEvent(event) {
   }
   app.listen(PORT);
   console.log(`Server running at ${PORT}`);
+  //test
