@@ -71,7 +71,7 @@ async function handleEvent(event) {
 
 
   //レスポンスの中からを探索
-  for(var num = 0; num <= response.data.rest.length; num++){
+  for(var num = 0; num < response.data.rest.length; num++){
    
     hitnum.push(num)
     shop_name.push(response.data.rest[num].name)
@@ -429,7 +429,7 @@ if(event.type == 'message'){
 
 
   //レスポンスの中からを探索
-  for(var num = 0; num <= response.data.rest.length; num++){
+  for(var num = 0; num < response.data.rest.length; num++){
    
       var hitnum = num;
       var shop_name = response.data.rest[num].name;
