@@ -109,6 +109,7 @@ if(event.type == 'message'){
       curry_pic = response.data.rest[num].image_url.shop_image1;
       address = response.data.rest[num].address;
       phonenumber = response.data.rest[num].tel
+      console.log(curry_pic);
       break;
     
   }
