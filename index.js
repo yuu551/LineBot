@@ -87,10 +87,9 @@ async function handleEvent(event) {
     if(!opentime[num]){
       opentime[num] = '店舗へお尋ねください。'
     }
-    console.log(shop_name);
-    console.log(curry_pic);
-    console.log(curry_url);
-      break;
+    console.log(shop_name[num]);
+    console.log(curry_pic[num]);
+    console.log(curry_url[num]);
     
   }
 
