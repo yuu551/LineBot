@@ -182,16 +182,6 @@ async function handleEvent(event) {
         "height": "sm",
         "action": {
           "type": "uri",
-          "label": "CALL",
-          "uri": curry_url
-        }
-      },
-      {
-        "type": "button",
-        "style": "link",
-        "height": "sm",
-        "action": {
-          "type": "uri",
           "label": "WEBSITE",
           "uri": curry_url
         }
