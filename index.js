@@ -203,7 +203,7 @@ if(event.type == 'message'){
 
   // ぐるなびAPIに問い合わせ
   const response = await axios.get(encodeUrl)
-                              .catch(this.errored = ture);
+                            
 
   console.log(response.data);
 
