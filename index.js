@@ -102,7 +102,13 @@ if(event.type == 'message'){
   for(var num = 0; num <= response.data.rest.length; num++){
    
       hitnum = num;
-      ramen_url = response.data.rest[num].url_mobile;
+      shop_name = response.data.rest[num].name;
+      shop_address = response.data.rest[num].address
+      opentime = response.data.rest[num].opentime
+      curry_url = response.data.rest[num].url_mobile;
+      curry_pic = response.data.rest[num].image_url.shop_image1;
+      address = response.data.rest[num].address;
+      phonenumber = response.data.rest[num].tel
       break;
     
   }
@@ -116,13 +122,13 @@ if(event.type == 'message'){
     "type": "bubble",
   "hero": {
     "type": "image",
-    "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",
+    "url": curry_pic,
     "size": "full",
     "aspectRatio": "20:13",
     "aspectMode": "cover",
     "action": {
       "type": "uri",
-      "uri": "http://linecorp.com/"
+      "uri": curry_url
     }
   },
   "body": {
@@ -131,7 +137,7 @@ if(event.type == 'message'){
     "contents": [
       {
         "type": "text",
-        "text": "Brown Cafe",
+        "text": shop_name,
         "weight": "bold",
         "size": "xl"
       },
@@ -155,7 +161,7 @@ if(event.type == 'message'){
               },
               {
                 "type": "text",
-                "text": "Miraina Tower, 4-1-6 Shinjuku, Tokyo",
+                "text": address,
                 "wrap": true,
                 "color": "#666666",
                 "size": "sm",
@@ -177,7 +183,7 @@ if(event.type == 'message'){
               },
               {
                 "type": "text",
-                "text": "10:00 - 23:00",
+                "text": opentime,
                 "wrap": true,
                 "color": "#666666",
                 "size": "sm",
@@ -201,7 +207,7 @@ if(event.type == 'message'){
         "action": {
           "type": "uri",
           "label": "CALL",
-          "uri": "https://linecorp.com"
+          "uri": phonenumber
         }
       },
       {
@@ -211,7 +217,7 @@ if(event.type == 'message'){
         "action": {
           "type": "uri",
           "label": "WEBSITE",
-          "uri": "https://linecorp.com"
+          "uri": curry_url
         }
       },
       {
