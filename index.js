@@ -108,10 +108,7 @@ if(event.type == 'message'){
   }
 
   // ヒットしたインドカレー店の住所をLINE botに返す
-  return client.replyMessage(event.replyToken, [{
-    type: 'text',
-    text: '一番近くの店舗はこちらです！'
-  },
+  return client.replyMessage(event.replyToken, 
   {
     "type": "bubble",
   "hero": {
@@ -221,8 +218,7 @@ if(event.type == 'message'){
     ],
     "flex": 0
   }
-  }
-]);
+  });
 }
   }
   app.listen(PORT);
