@@ -74,10 +74,16 @@ async function handleEvent(event) {
   }
 
   // ヒットしたラーメン店の住所をLINE botに返す
-  return client.replyMessage(event.replyToken, {
+  return client.replyMessage(event.replyToken, [{
+    type: 'text',
+    text: '一番近くの店舗はこちらです！'
+  },
+  {
     type: 'text',
     text: response.data.rest[hitnum].url
-  });
+
+  }
+]);
   }
   app.listen(PORT);
   console.log(`Server running at ${PORT}`);
