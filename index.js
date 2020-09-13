@@ -51,15 +51,17 @@ async function handleEvent(event) {
   url = 'https://api.gnavi.co.jp/RestSearchAPI/v3/?keyid=6eecd3af974fcc7fa63d6ab8139269e6&latitude=' + event.message.latitude + '&longitude=' + event.message.longitude + '&freeword=インドカレー&range=4';
   const encodeUrl = encodeURI(url);
 
-  // ぐるなびAPIに問い合わせ
-  const response = await axios.get(encodeUrl);
+  try{
+    // ぐるなびAPIに問い合わせ
+    var response = await axios.get(encodeUrl)
+    } catch{
+      return client.replyMessage(event.replyToken, {
+        type: 'text',
+        text: '申し訳ございません。該当店舗は存在しません。。。'
+      });
+    }      
 
-  if(response.data){
-    return client.replyMessage(event.replyToken, {
-      type: 'text',
-      text: '該当店舗は存在しません。'
-    });
-  }
+ 
 
 
   //レスポンスの中からを探索
@@ -207,18 +209,11 @@ if(event.type == 'message'){
   } catch{
     return client.replyMessage(event.replyToken, {
       type: 'text',
-      text: '該当店舗は存在しません。'
+      text: '申し訳ございません。該当店舗は存在しません。。。'
     });
   }                  
 
-  console.log(response.data);
 
-  if(!response.data){
-    return client.replyMessage(event.replyToken, {
-      type: 'text',
-      text: '該当店舗は存在しません。'
-    });
-  }
 
 
   //レスポンスの中からを探索
