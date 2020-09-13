@@ -34,7 +34,7 @@ async function handleEvent(event) {
   var ramen_url;
   var hitnum;
 
-  if(event.text == '位置情報から検索'){
+  if(event.message.text == '位置情報から検索'){
     return client.replyMessage(event.replyToken, {
       type: 'text',
       text: 'メニューから自分の位置情報を送信してください！'
