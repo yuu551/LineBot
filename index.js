@@ -34,18 +34,22 @@ async function handleEvent(event) {
   var ramen_url;
   var hitnum;
 
+  ///メニューから位置情報で検索ボタンを押したとき
   if(event.message.text == '位置情報から検索'){
     return client.replyMessage(event.replyToken, {
       type: 'text',
       text: 'メニューから自分の位置情報を送信してください！'
     });
   }
-
-  // 位置情報のみに入力制限
-  if (event.type !== 'message' || event.message.type !== 'location') {
-    return Promise.resolve(null);
+  ///メニューから地名で検索を押したとき
+  if(event.message.text == '地名から検索'){
+    return client.replyMessage(event.replyToken, {
+      type: 'text',
+      text: '検索したい地名を入力してください。'
+    });
   }
-
+  ///位置情報が送信されたとき
+  if(event.message.type == 'location'){
   // 取得した位置情報をログに表示
   console.log(event.message.latitude + ' : ' + event.message.longitude);
 
@@ -85,6 +89,43 @@ async function handleEvent(event) {
   }
 ]);
   }
+if(event.type == 'message'){
+  url = 'https://api.gnavi.co.jp/RestSearchAPI/v3/?keyid=6eecd3af974fcc7fa63d6ab8139269e6&freeword=インドカレー&address='+event.message.text;
+  const encodeUrl = encodeURI(url);
+
+  // ぐるなびAPIに問い合わせ
+  const response = await axios.get(encodeUrl);
+
+  if(response.data.rest.length ==0){
+    return client.replyMessage(event.replyToken, {
+      type: 'text',
+      text: '該当店舗は存在しません。'
+    });
+  }
+
+
+  //レスポンスの中からを探索
+  for(var num = 0; num <= response.data.rest.length; num++){
+   
+      hitnum = num;
+      ramen_url = response.data.rest[num].url_mobile;
+      break;
+    
+  }
+
+  // ヒットしたインドカレー店の住所をLINE botに返す
+  return client.replyMessage(event.replyToken, [{
+    type: 'text',
+    text: '一番近くの店舗はこちらです！'
+  },
+  {
+    type: 'text',
+    text: response.data.rest[hitnum].url
+
+  }
+]);
+}
+  }
   app.listen(PORT);
   console.log(`Server running at ${PORT}`);
-  //test
+  
