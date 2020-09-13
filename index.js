@@ -54,7 +54,7 @@ async function handleEvent(event) {
   // ぐるなびAPIに問い合わせ
   const response = await axios.get(encodeUrl);
 
-  if(response.data.error){
+  if(response.data){
     return client.replyMessage(event.replyToken, {
       type: 'text',
       text: '該当店舗は存在しません。'
@@ -202,11 +202,12 @@ if(event.type == 'message'){
   const encodeUrl = encodeURI(url);
 
   // ぐるなびAPIに問い合わせ
-  const response = await axios.get(encodeUrl);
+  const response = await axios.get(encodeUrl)
+                              .catch(this.errored = ture);
 
   console.log(response.data);
 
-  if(response.data.error){
+  if(!response.data){
     return client.replyMessage(event.replyToken, {
       type: 'text',
       text: '該当店舗は存在しません。'
