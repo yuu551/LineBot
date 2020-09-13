@@ -109,7 +109,9 @@ if(event.type == 'message'){
       curry_pic = response.data.rest[num].image_url.shop_image1;
       address = response.data.rest[num].address;
       phonenumber = response.data.rest[num].tel
+      console.log(shop_name);
       console.log(curry_pic);
+      console.log(curry_url);
       break;
     
   }
@@ -208,7 +210,7 @@ if(event.type == 'message'){
         "action": {
           "type": "uri",
           "label": "CALL",
-          "uri": phonenumber
+          "uri": curry_url
         }
       },
       {
