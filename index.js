@@ -33,6 +33,7 @@ async function handleEvent(event) {
       var curry_pic = [];
       var address = [];
       var phonenumber = [];
+      var msgs = [];
   
 
   ///メニューから位置情報で検索ボタンを押したとき
@@ -88,11 +89,11 @@ async function handleEvent(event) {
     if(!opentime[num]){
       opentime[num] = '店舗へお尋ねください。'
     }
-   var msg12 = msg.replymessage(curry_pic[num],curry_url[num],shop_name[num],address[num],opentime[num]);
+    msgs.push(msg.replymessage(curry_pic[num],curry_url[num],shop_name[num],address[num],opentime[num]));
     
   }
   // ヒットしたインドカレー店の住所をLINE botに返す
-  return client.replyMessage(event.replyToken,msg12);
+  return client.replyMessage(event.replyToken,msgs[0]);
 }
 
 if(event.type == 'message'){
