@@ -88,11 +88,11 @@ async function handleEvent(event) {
     if(!opentime[num]){
       opentime[num] = '店舗へお尋ねください。'
     }
-   const msg1 =msg.replyMessage(curry_pic[num],curry_url[num],shop_name[num],address[num],opentime[num]);
+   var msg12 = msg.replymessage(curry_pic[num],curry_url[num],shop_name[num],address[num],opentime[num]);
     
   }
   // ヒットしたインドカレー店の住所をLINE botに返す
-  return client.replyMessage(event.replyToken, msg1)
+  return client.replymessage(event.replyToken, msg12)
 }
 
 if(event.type == 'message'){
