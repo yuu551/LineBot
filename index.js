@@ -73,7 +73,7 @@ async function handleEvent(event) {
     curry_pic = response.data.rest[num].image_url.shop_image1;
     address = response.data.rest[num].address;
     phonenumber = response.data.rest[num].tel
-    if(curry_pic ==null){
+    if(curry_pic ==''){
       curry_pic = 'https://tblg.k-img.com/restaurant/images/Rvw/18549/640x640_rect_18549970.jpg'
     }
     console.log(shop_name);
@@ -230,7 +230,7 @@ if(event.type == 'message'){
       curry_pic = response.data.rest[num].image_url.shop_image1;
       address = response.data.rest[num].address;
       phonenumber = response.data.rest[num].tel
-      if(curry_pic ==null){
+      if(curry_pic == ''){
         curry_pic = 'https://tblg.k-img.com/restaurant/images/Rvw/18549/640x640_rect_18549970.jpg'
       }
       console.log(shop_name);
