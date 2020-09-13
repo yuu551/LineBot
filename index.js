@@ -84,7 +84,7 @@ async function handleEvent(event) {
 ]);
   }
 if(event.type == 'message'){
-  url = 'https://api.gnavi.co.jp/RestSearchAPI/v3/?keyid=6eecd3af974fcc7fa63d6ab8139269e6&freeword=インドカレー&address='+event.message.text;
+  url = 'https://api.gnavi.co.jp/RestSearchAPI/v3/?keyid=6eecd3af974fcc7fa63d6ab8139269e6&freeword_condition=1&freeword=インドカレー,'+event.message.text
   const encodeUrl = encodeURI(url);
 
   // ぐるなびAPIに問い合わせ
