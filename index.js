@@ -138,133 +138,49 @@ if(event.type == 'message'){
   //レスポンスの中からを探索
   for(var num = 0; num < response.data.rest.length; num++){
    
-      var hitnum = num;
-      var shop_name = response.data.rest[num].name;
-      var shop_address = response.data.rest[num].address
-      var opentime = response.data.rest[num].opentime
-      var curry_url = response.data.rest[num].url_mobile;
-      var curry_pic = response.data.rest[num].image_url.shop_image1;
-      var address = response.data.rest[num].address;
-      var phonenumber = response.data.rest[num].tel
-      if(!curry_pic){
-        curry_pic = 'https://tblg.k-img.com/restaurant/images/Rvw/18549/640x640_rect_18549970.jpg'
-      }
-      if(!opentime){
-        opentime = '店舗へお尋ねください。'
-      }
-      break;
+    hitnum.push(num)
+    shop_name.push(response.data.rest[num].name)
+    shop_address.push(response.data.rest[num].address)
+    opentime.push(response.data.rest[num].opentime)
+    curry_url.push(response.data.rest[num].url_mobile);
+    curry_pic.push(response.data.rest[num].image_url.shop_image1);
+    address.push(response.data.rest[num].address);
+    phonenumber.push(response.data.rest[num].tel)
+    if(!curry_pic[num]){
+      curry_pic[num] = 'https://tblg.k-img.com/restaurant/images/Rvw/18549/640x640_rect_18549970.jpg'
+    }
+    if(!opentime[num]){
+      opentime[num] = '店舗へお尋ねください。'
+    }
+    msgs.push(msg.replymessage(curry_pic[num],curry_url[num],shop_name[num],address[num],opentime[num]));
     
   }
 
-  // ヒットしたインドカレー店の住所をLINE botに返す
-  return client.replyMessage(event.replyToken, [{
-    type: 'text',
-    text: '検索結果付近の店舗はこちらです！'
-  },
-  {
-    "type": "flex",
-  "altText": "#",
-  "contents":{
-    "type": "bubble",
-  "hero": {
-    "type": "image",
-    "url": curry_pic,
-    "size": "full",
-    "aspectRatio": "20:13",
-    "aspectMode": "cover",
-    "action": {
-      "type": "uri",
-      "uri": curry_url
+  
+  if(response.data.rest.length >2){
+    // ヒットしたインドカレー店の住所をLINE botに返す
+    return client.replyMessage(event.replyToken,[{
+      type: 'text',
+      text: '検索結果付近の店舗はこちらです！'
+    },msgs[0],msgs[1],msgs[2]
+  ]);
     }
-  },
-  "body": {
-    "type": "box",
-    "layout": "vertical",
-    "contents": [
-      {
-        "type": "text",
-        "text": shop_name,
-        "weight": "bold",
-        "size": "xl"
-      },
-      {
-        "type": "box",
-        "layout": "vertical",
-        "margin": "lg",
-        "spacing": "sm",
-        "contents": [
-          {
-            "type": "box",
-            "layout": "baseline",
-            "spacing": "sm",
-            "contents": [
-              {
-                "type": "text",
-                "text": "Place",
-                "color": "#aaaaaa",
-                "size": "sm",
-                "flex": 1
-              },
-              {
-                "type": "text",
-                "text": address,
-                "wrap": true,
-                "color": "#666666",
-                "size": "sm",
-                "flex": 5
-              }
-            ]
-          },
-          {
-            "type": "box",
-            "layout": "baseline",
-            "spacing": "sm",
-            "contents": [
-              {
-                "type": "text",
-                "text": "Time",
-                "color": "#aaaaaa",
-                "size": "sm",
-                "flex": 1
-              },
-              {
-                "type": "text",
-                "text": opentime,
-                "wrap": true,
-                "color": "#666666",
-                "size": "sm",
-                "flex": 5
-              }
-            ]
-          }
-        ]
+    if(response.data.rest.length >1){
+      // ヒットしたインドカレー店の住所をLINE botに返す
+      return client.replyMessage(event.replyToken,[{
+        type: 'text',
+        text: '検索結果付近の店舗はこちらです！'
+      },msgs[0],msgs[1]
+    ]);
       }
-    ]
-  },
-  "footer": {
-    "type": "box",
-    "layout": "vertical",
-    "spacing": "sm",
-    "contents": [
-      {
-        "type": "button",
-        "style": "link",
-        "height": "sm",
-        "action": {
-          "type": "uri",
-          "label": "WEBSITE",
-          "uri": curry_url
+      if(response.data.rest.length >0){
+        // ヒットしたインドカレー店の住所をLINE botに返す
+        return client.replyMessage(event.replyToken,[{
+          type: 'text',
+          text: '検索結果付近の店舗はこちらです！'
+        },msgs[0]
+      ]);
         }
-      },
-      {
-        "type": "spacer",
-        "size": "sm"
-      }
-    ],
-    "flex": 0
-  }
-}
-  }]);
 }
   }
   app.listen(PORT);
