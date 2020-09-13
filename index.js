@@ -70,10 +70,10 @@ async function handleEvent(event) {
     shop_address = response.data.rest[num].address
     opentime = response.data.rest[num].opentime
     curry_url = response.data.rest[num].url_mobile;
-    curry_pic = response.data.rest[num].image_url.shop_image1;
+    var curry_pic = response.data.rest[num].image_url.shop_image1;
     address = response.data.rest[num].address;
     phonenumber = response.data.rest[num].tel
-    if(curry_pic ==''){
+    if(!curry_pic){
       curry_pic = 'https://tblg.k-img.com/restaurant/images/Rvw/18549/640x640_rect_18549970.jpg'
     }
     console.log(shop_name);
@@ -222,15 +222,15 @@ if(event.type == 'message'){
   //レスポンスの中からを探索
   for(var num = 0; num <= response.data.rest.length; num++){
    
-      hitnum = num;
-      shop_name = response.data.rest[num].name;
-      shop_address = response.data.rest[num].address
-      opentime = response.data.rest[num].opentime
-      curry_url = response.data.rest[num].url_mobile;
-      curry_pic = response.data.rest[num].image_url.shop_image1;
-      address = response.data.rest[num].address;
-      phonenumber = response.data.rest[num].tel
-      if(curry_pic == ''){
+      var hitnum = num;
+      var shop_name = response.data.rest[num].name;
+      var shop_address = response.data.rest[num].address
+      var opentime = response.data.rest[num].opentime
+      var curry_url = response.data.rest[num].url_mobile;
+      var curry_pic = response.data.rest[num].image_url.shop_image1;
+      var address = response.data.rest[num].address;
+      var phonenumber = response.data.rest[num].tel
+      if(!curry_pic){
         curry_pic = 'https://tblg.k-img.com/restaurant/images/Rvw/18549/640x640_rect_18549970.jpg'
       }
       console.log(shop_name);
