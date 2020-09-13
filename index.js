@@ -24,9 +24,15 @@ const client = new line.Client(config);
 
 
 async function handleEvent(event) {
-  var url
-  var ramen_url;
-  var hitnum;
+    var hitnum = [];
+      var shop_name = [];
+      var shop_address = [];
+      var opentime =[];
+      var curry_url = [];
+      var curry_pic = [];
+      var address = [];
+      var phonenumber = [];
+  
 
   ///メニューから位置情報で検索ボタンを押したとき
   if(event.message.text == '位置情報から検索'){
@@ -67,19 +73,19 @@ async function handleEvent(event) {
   //レスポンスの中からを探索
   for(var num = 0; num <= response.data.rest.length; num++){
    
-    hitnum = num;
-    shop_name = response.data.rest[num].name;
-    shop_address = response.data.rest[num].address
-    opentime = response.data.rest[num].opentime
-    curry_url = response.data.rest[num].url_mobile;
-    var curry_pic = response.data.rest[num].image_url.shop_image1;
-    address = response.data.rest[num].address;
-    phonenumber = response.data.rest[num].tel
-    if(!curry_pic){
-      curry_pic = 'https://tblg.k-img.com/restaurant/images/Rvw/18549/640x640_rect_18549970.jpg'
+    hitnum.push(num)
+    shop_name.push(response.data.rest[num].name)
+    shop_address.push(response.data.rest[num].address)
+    opentime.push(response.data.rest[num].opentime)
+    curry_url.push(response.data.rest[num].url_mobile);
+    curry_pic.push(response.data.rest[num].image_url.shop_image1);
+    address.push(response.data.rest[num].address);
+    phonenumber.push(response.data.rest[num].tel)
+    if(!curry_pic[num]){
+      curry_pic[num] = 'https://tblg.k-img.com/restaurant/images/Rvw/18549/640x640_rect_18549970.jpg'
     }
-    if(!opentime){
-      opentime = '店舗へお尋ねください。'
+    if(!opentime[num]){
+      opentime[num] = '店舗へお尋ねください。'
     }
     console.log(shop_name);
     console.log(curry_pic);
@@ -100,13 +106,13 @@ async function handleEvent(event) {
     "type": "bubble",
   "hero": {
     "type": "image",
-    "url": curry_pic,
+    "url": curry_pic[0],
     "size": "full",
     "aspectRatio": "20:13",
     "aspectMode": "cover",
     "action": {
       "type": "uri",
-      "uri": curry_url
+      "uri": curry_url[0]
     }
   },
   "body": {
@@ -115,7 +121,7 @@ async function handleEvent(event) {
     "contents": [
       {
         "type": "text",
-        "text": shop_name,
+        "text": shop_name[0],
         "weight": "bold",
         "size": "xl"
       },
@@ -139,7 +145,7 @@ async function handleEvent(event) {
               },
               {
                 "type": "text",
-                "text": address,
+                "text": address[0],
                 "wrap": true,
                 "color": "#666666",
                 "size": "sm",
@@ -161,7 +167,7 @@ async function handleEvent(event) {
               },
               {
                 "type": "text",
-                "text": opentime,
+                "text": opentime[0],
                 "wrap": true,
                 "color": "#666666",
                 "size": "sm",
@@ -185,7 +191,7 @@ async function handleEvent(event) {
         "action": {
           "type": "uri",
           "label": "WEBSITE",
-          "uri": curry_url
+          "uri": curry_url[0]
         }
       },
       {
@@ -196,6 +202,213 @@ async function handleEvent(event) {
     "flex": 0
   }
 }
+  },{
+    "type": "flex",
+  "altText": "#",
+  "contents":{
+    "type": "bubble",
+  "hero": {
+    "type": "image",
+    "url": curry_pic[1],
+    "size": "full",
+    "aspectRatio": "20:13",
+    "aspectMode": "cover",
+    "action": {
+      "type": "uri",
+      "uri": curry_url[1]
+    }
+  },
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": shop_name[1],
+        "weight": "bold",
+        "size": "xl"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "margin": "lg",
+        "spacing": "sm",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "baseline",
+            "spacing": "sm",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Place",
+                "color": "#aaaaaa",
+                "size": "sm",
+                "flex": 1
+              },
+              {
+                "type": "text",
+                "text": address[1],
+                "wrap": true,
+                "color": "#666666",
+                "size": "sm",
+                "flex": 5
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "baseline",
+            "spacing": "sm",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Time",
+                "color": "#aaaaaa",
+                "size": "sm",
+                "flex": 1
+              },
+              {
+                "type": "text",
+                "text": opentime[1],
+                "wrap": true,
+                "color": "#666666",
+                "size": "sm",
+                "flex": 5
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "footer": {
+    "type": "box",
+    "layout": "vertical",
+    "spacing": "sm",
+    "contents": [
+      {
+        "type": "button",
+        "style": "link",
+        "height": "sm",
+        "action": {
+          "type": "uri",
+          "label": "WEBSITE",
+          "uri": curry_url[1]
+        }
+      },
+      {
+        "type": "spacer",
+        "size": "sm"
+      }
+    ],
+    "flex": 0
+  }
+}
+
+  },{"type": "flex",
+  "altText": "#",
+  "contents":{
+    "type": "bubble",
+  "hero": {
+    "type": "image",
+    "url": curry_pic[2],
+    "size": "full",
+    "aspectRatio": "20:13",
+    "aspectMode": "cover",
+    "action": {
+      "type": "uri",
+      "uri": curry_url[2]
+    }
+  },
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": shop_name[2],
+        "weight": "bold",
+        "size": "xl"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "margin": "lg",
+        "spacing": "sm",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "baseline",
+            "spacing": "sm",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Place",
+                "color": "#aaaaaa",
+                "size": "sm",
+                "flex": 1
+              },
+              {
+                "type": "text",
+                "text": address[2],
+                "wrap": true,
+                "color": "#666666",
+                "size": "sm",
+                "flex": 5
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "baseline",
+            "spacing": "sm",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Time",
+                "color": "#aaaaaa",
+                "size": "sm",
+                "flex": 1
+              },
+              {
+                "type": "text",
+                "text": opentime[2],
+                "wrap": true,
+                "color": "#666666",
+                "size": "sm",
+                "flex": 5
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "footer": {
+    "type": "box",
+    "layout": "vertical",
+    "spacing": "sm",
+    "contents": [
+      {
+        "type": "button",
+        "style": "link",
+        "height": "sm",
+        "action": {
+          "type": "uri",
+          "label": "WEBSITE",
+          "uri": curry_url[2]
+        }
+      },
+      {
+        "type": "spacer",
+        "size": "sm"
+      }
+    ],
+    "flex": 0
+  }
+}
+
   }
 ]);
   }
