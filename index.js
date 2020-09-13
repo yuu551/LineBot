@@ -92,7 +92,7 @@ async function handleEvent(event) {
     msgs.push(msg.replymessage(curry_pic[num],curry_url[num],shop_name[num],address[num],opentime[num]));
     
   }
-  if(response.data.rest.count >2){
+  if(response.data.rest.length >2){
   // ヒットしたインドカレー店の住所をLINE botに返す
   return client.replyMessage(event.replyToken,[{
     type: 'text',
@@ -100,7 +100,7 @@ async function handleEvent(event) {
   },msgs[0],msgs[1],msgs[2]
 ]);
   }
-  if(response.data.rest.count >1){
+  if(response.data.rest.length >1){
     // ヒットしたインドカレー店の住所をLINE botに返す
     return client.replyMessage(event.replyToken,[{
       type: 'text',
@@ -108,7 +108,7 @@ async function handleEvent(event) {
     },msgs[0],msgs[1]
   ]);
     }
-    if(response.data.rest.count >0){
+    if(response.data.rest.length >0){
       // ヒットしたインドカレー店の住所をLINE botに返す
       return client.replyMessage(event.replyToken,[{
         type: 'text',
