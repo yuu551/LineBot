@@ -76,6 +76,9 @@ async function handleEvent(event) {
     if(!curry_pic){
       curry_pic = 'https://tblg.k-img.com/restaurant/images/Rvw/18549/640x640_rect_18549970.jpg'
     }
+    if(!opentime){
+      opentime = '店舗へお尋ねください。'
+    }
     console.log(shop_name);
     console.log(curry_pic);
     console.log(curry_url);
@@ -233,12 +236,9 @@ if(event.type == 'message'){
       if(!curry_pic){
         curry_pic = 'https://tblg.k-img.com/restaurant/images/Rvw/18549/640x640_rect_18549970.jpg'
       }
-      console.log(shop_address);
-      console.log(opentime);
-      console.log(curry_url);
-      console.log(shop_name);
-      console.log(curry_pic);
-      console.log(curry_url);
+      if(!opentime){
+        opentime = '店舗へお尋ねください。'
+      }
       break;
     
   }
