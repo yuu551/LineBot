@@ -59,6 +59,7 @@ async function handleEvent(event) {
   url = 'https://api.gnavi.co.jp/RestSearchAPI/v3/?keyid=6eecd3af974fcc7fa63d6ab8139269e6&latitude=' + event.message.latitude + '&longitude=' + event.message.longitude + '&freeword=インドカレー&range=4';
   const encodeUrl = encodeURI(url);
 
+  //test
   try{
     // ぐるなびAPIに問い合わせ
     var response = await axios.get(encodeUrl)
