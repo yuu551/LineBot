@@ -165,19 +165,19 @@ if(event.message.text == 'お気に入りを表示'){
             // ぐるなびAPIに問い合わせ
               await axios.get(encodeUrl).then(response => {
               console.log(response);
-              shop_name.push(response.data.rest[num].name)
-              shop_address.push(response.data.rest[num].address)
-              opentime.push(response.data.rest[num].opentime)
-              curry_url.push(response.data.rest[num].url_mobile);
-              curry_pic.push(response.data.rest[num].image_url.shop_image1);
-              address.push(response.data.rest[num].address);
-              phonenumber.push(response.data.rest[num].tel)
-              shopid.push(response.data.rest[num].id)
-              if(!curry_pic[num]){
-                curry_pic[num] = 'https://tblg.k-img.com/restaurant/images/Rvw/18549/640x640_rect_18549970.jpg'
+              shop_name.push(response.data.rest[i].name)
+              shop_address.push(response.data.rest[i].address)
+              opentime.push(response.data.rest[i].opentime)
+              curry_url.push(response.data.rest[i].url_mobile);
+              curry_pic.push(response.data.rest[i].image_url.shop_image1);
+              address.push(response.data.rest[i].address);
+              phonenumber.push(response.data.rest[i].tel)
+              shopid.push(response.data.rest[i].id)
+              if(!curry_pic[i]){
+                curry_pic[i] = 'https://tblg.k-img.com/restaurant/images/Rvw/18549/640x640_rect_18549970.jpg'
               }
-              if(!opentime[num]){
-                opentime[num] = '店舗へお尋ねください。'
+              if(!opentime[i]){
+                opentime[i] = '店舗へお尋ねください。'
               }
             });
      }
