@@ -1,7 +1,6 @@
 const axios = require('axios');       
 const express = require('express');
 const line = require('@line/bot-sdk');
-const msg =require('./messages');
 const curmsg =require('./cursel');
 const PORT = process.env.PORT || 3000;
 
@@ -26,7 +25,7 @@ const client = new line.Client(config);
 
 
 async function handleEvent(event) {
-      var hitnum = [];
+    var hitnum = [];
       var shop_name = [];
       var shop_address = [];
       var opentime =[];
@@ -72,35 +71,39 @@ async function handleEvent(event) {
       });
     }      
 
- //レスポンスの中からを探索
- for(var num = 0; num < response.data.rest.length; num++){
-   
-  hitnum.push(num)
-  shop_name.push(response.data.rest[num].name)
-  shop_address.push(response.data.rest[num].address)
-  opentime.push(response.data.rest[num].opentime)
-  curry_url.push(response.data.rest[num].url_mobile);
-  curry_pic.push(response.data.rest[num].image_url.shop_image1);
-  address.push(response.data.rest[num].address);
-  phonenumber.push(response.data.rest[num].tel)
-  if(!curry_pic[num]){
-    curry_pic[num] = 'https://tblg.k-img.com/restaurant/images/Rvw/18549/640x640_rect_18549970.jpg'
-  }
-  if(!opentime[num]){
-    opentime[num] = '店舗へお尋ねください。'
-  }
-}
-msg = curmsg.replymessage(curry_pic,curry_url,shop_name,address,opentime);
+ 
 
-// ヒットしたインドカレー店の住所をLINE botに返す
-return client.replyMessage(event.replyToken,[{
-  type: 'text',
-  text: '検索結果付近の店舗はこちらです！'
-},msg
+
+  //レスポンスの中からを探索
+  for(var num = 0; num < response.data.rest.length; num++){
+   
+    hitnum.push(num)
+    shop_name.push(response.data.rest[num].name)
+    shop_address.push(response.data.rest[num].address)
+    opentime.push(response.data.rest[num].opentime)
+    curry_url.push(response.data.rest[num].url_mobile);
+    curry_pic.push(response.data.rest[num].image_url.shop_image1);
+    address.push(response.data.rest[num].address);
+    phonenumber.push(response.data.rest[num].tel)
+    if(!curry_pic[num]){
+      curry_pic[num] = 'https://tblg.k-img.com/restaurant/images/Rvw/18549/640x640_rect_18549970.jpg'
+    }
+    if(!opentime[num]){
+      opentime[num] = '店舗へお尋ねください。'
+    }
+  }
+  msg = curmsg.replymessage(curry_pic,curry_url,shop_name,address,opentime);
+  
+  // ヒットしたインドカレー店の住所をLINE botに返す
+  return client.replyMessage(event.replyToken,[{
+    type: 'text',
+    text: '検索結果付近の店舗はこちらです！'
+  },msg
 ]);
   
 }
 
+//メッセージだった場合
 if(event.type == 'message'){
   url = 'https://api.gnavi.co.jp/RestSearchAPI/v3/?keyid=6eecd3af974fcc7fa63d6ab8139269e6&freeword_condition=1&freeword=インドカレー,'+event.message.text
   const encodeUrl = encodeURI(url);
