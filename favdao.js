@@ -23,11 +23,10 @@ const getFav = () => {
 }
 
 const InsertRecord = () =>{
-  var base = new Airttable({apiKey:AIRTABLE_API_KEY }).base(APP_ID);
+  const base = new Airttable({apiKey:AIRTABLE_API_KEY }).base(APP_ID);
 
 base('FavTable1').create([
   {
-    "id": "recTpUzIBx2Ty7",
     "fields": {
       "UserId": "1004",
       "CurryUrl": "Test2",
