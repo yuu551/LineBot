@@ -150,6 +150,7 @@ if(event.message.text == 'お気に入りを表示'){
         Table = result;
       });
     console.log(Table);
+    console.log(Table.records.length)
 
   for (var i = 0;i<Table.records.length;i++){
      if(Table.records[i].fields.UserId == event.source.userId)

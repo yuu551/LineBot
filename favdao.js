@@ -6,8 +6,6 @@ const APP_ID = process.env.APP_ID;
 
 const getFav = () => {
   return new Promise((resolve, reject) => {
-    console.log(AIRTABLE_API_KEY)
-    console.log(APP_ID)
     const worksTable = new Airtable({ apiKey: AIRTABLE_API_KEY })
       .base(APP_ID)
       .table('FavTable1')
