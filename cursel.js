@@ -286,7 +286,7 @@ exports.replymessage = function(curry_pic,curry_url,shop_name,address,opentime){
                   "flex": 0,
                   "spacing": "sm"
                 }
-              },
+              }
             ]
       }
     }
