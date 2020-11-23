@@ -40,8 +40,12 @@ async function handleEvent(event) {
       console.log(event);
       console.log(event.source.userId);
       const test = dao.GetFavCurry();
-      const table = dao.GetFavCurry().then(result => result);
-      console.log(table);
+      let Table
+      dao.GetFavCurry().then(result => {
+        Table = result;
+        return Table;
+      } );
+      console.log(Table);
   
 
   ///メニューから位置情報で検索ボタンを押したとき
