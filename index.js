@@ -172,10 +172,7 @@ if(event.message.text == 'お気に入りを表示'){
               phonenumber.push(response.data.rest[num].tel)
               shopid.push(response.data.rest[num].id)
           } catch{
-            return client.replyMessage(event.replyToken, {
-            type: 'text',
-            text: '申し訳ございません。該当店舗は存在しません。。。'
-            });
+            continue;
           }      
      }
      
