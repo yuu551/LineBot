@@ -140,6 +140,8 @@ if(event.message.text == 'お気に入りを表示'){
      console.log(userid);
   }
 
+  await dao.InsertRecord();
+
 
 
   return client.replyMessage(event.replyToken, {
