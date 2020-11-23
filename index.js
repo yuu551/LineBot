@@ -39,10 +39,9 @@ async function handleEvent(event) {
       var msgs = [];
       console.log(event);
       console.log(event.source.userId);
-      const test = dao.Test();
-      console.log(test);
-
-      dao.Test().then(result => console.log(result));
+      const test = dao.GetFavCurry();
+      const table = dao.GetFavCurry().then(result => result);
+      console.log(table);
   
 
   ///メニューから位置情報で検索ボタンを押したとき

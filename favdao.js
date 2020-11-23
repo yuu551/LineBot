@@ -1,6 +1,6 @@
 const Airtable = require('airtable-node');
 
-const getWorks = () => {
+const getFav = () => {
   return new Promise((resolve, reject) => {
     const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY;
     const APP_ID = process.env.APP_ID;
@@ -18,4 +18,4 @@ const getWorks = () => {
   })
 }
 
-exports.Test = getWorks;
+exports.GetFavCurry = getFav;
