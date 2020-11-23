@@ -45,10 +45,10 @@ async function handleEvent(event) {
 
   //ポストバック
   if(event.type == "postback"){
-    console.log(event.postback.data);
+    await dao.InsertRecord(event.source.userId,event.postback.data);
     return client.replyMessage(event.replyToken, {
       type: 'text',
-      text: 'ポストバックです。'
+      text: 'お気に入りに登録完了しました！'
     });
   }
 
