@@ -66,6 +66,7 @@ exports.replymessage = function(curry_pic,curry_url,shop_name,address,opentime){
                             },
                             {
                               "type": "text",
+                              "wrap": true,
                               "text": opentime[0],
                               "flex": 5,
                               "size": "sm",
@@ -161,6 +162,7 @@ exports.replymessage = function(curry_pic,curry_url,shop_name,address,opentime){
                             },
                             {
                               "type": "text",
+                              "wrap": true,
                               "text": opentime[1],
                               "flex": 5,
                               "size": "sm",
@@ -256,6 +258,7 @@ exports.replymessage = function(curry_pic,curry_url,shop_name,address,opentime){
                             },
                             {
                               "type": "text",
+                              "wrap": true,
                               "text": opentime[2],
                               "flex": 5,
                               "size": "sm",
@@ -363,6 +366,7 @@ exports.replymessage2 = function(curry_pic,curry_url,shop_name,address,opentime)
                           },
                           {
                             "type": "text",
+                            "wrap": true,
                             "text": opentime[0],
                             "flex": 5,
                             "size": "sm",
@@ -458,6 +462,7 @@ exports.replymessage2 = function(curry_pic,curry_url,shop_name,address,opentime)
                           },
                           {
                             "type": "text",
+                            "wrap": true,
                             "text": opentime[1],
                             "flex": 5,
                             "size": "sm",
@@ -565,6 +570,7 @@ exports.replymessage1 = function(curry_pic,curry_url,shop_name,address,opentime)
                           },
                           {
                             "type": "text",
+                            "wrap": true,
                             "text": opentime[0],
                             "flex": 5,
                             "size": "sm",
