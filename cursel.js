@@ -333,7 +333,7 @@ exports.replymessage = function(curry_pic,curry_url,shop_name,address,opentime,s
     }
     }
 
-exports.replymessage2 = function(curry_pic,curry_url,shop_name,address,opentime){
+exports.replymessage2 = function(curry_pic,curry_url,shop_name,address,opentime,shopid){
   return{
     "type": "flex",
     "altText": "#",
@@ -559,7 +559,7 @@ exports.replymessage2 = function(curry_pic,curry_url,shop_name,address,opentime)
   }
 }
 
-exports.replymessage1 = function(curry_pic,curry_url,shop_name,address,opentime){
+exports.replymessage1 = function(curry_pic,curry_url,shop_name,address,opentime,shopid){
   return{
     "type": "flex",
     "altText": "#",
