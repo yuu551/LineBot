@@ -42,6 +42,11 @@ async function handleEvent(event) {
       
   
 
+  //ポストバック
+  if(event.type == "postback"){
+    console.log(event.postback.data);
+  }
+
   ///メニューから位置情報で検索ボタンを押したとき
   if(event.message.text == '位置情報から検索'){
     return client.replyMessage(event.replyToken, {
@@ -215,10 +220,7 @@ if(event.type == 'message'){
     
   }
 
-  //ポストバック
-  if(event.type == "postback"){
-    console.log(event.postback.data);
-  }
+  
 
   
 }
