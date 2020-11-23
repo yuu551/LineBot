@@ -39,7 +39,8 @@ async function handleEvent(event) {
       var msgs = [];
       console.log(event);
       console.log(event.source.userId);
-      console.log(dao.Test());
+      const test = dao.Test();
+      console.log(test);
   
 
   ///メニューから位置情報で検索ボタンを押したとき
