@@ -145,6 +145,7 @@ if(response.data.rest.length >2){
   ///お気に入りを表示
 if(event.message.text == 'お気に入りを表示'){
 
+  var arrnum = 0; 
   let Table;
   await dao.GetFavCurry().then(result => {
         Table = result;
@@ -156,7 +157,7 @@ if(event.message.text == 'お気に入りを表示'){
   for (var i = 0;i<Table.records.length;i++){
      if(Table.records[i].fields.UserId == event.source.userId)
      {  
-        num = 0;
+        
           // ぐるなびAPIを使うためのURLに経緯を加える
          url = 'https://api.gnavi.co.jp/RestSearchAPI/v3/?keyid=6eecd3af974fcc7fa63d6ab8139269e6&id=' + Table.records[i].fields.ShopId;
          console.log(url);
@@ -183,7 +184,8 @@ if(event.message.text == 'お気に入りを表示'){
                 opentime[num] = '店舗へお尋ねください。'
               }
             });
-            num++;
+            arrnum++;
+            
      }
     }
   }).call().then( () => {
