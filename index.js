@@ -93,6 +93,7 @@ async function handleEvent(event) {
 console.log(curry_url);
 console.log(curry_pic);
 msg = curmsg.replymessage(curry_pic,curry_url,shop_name,address,opentime);
+console.log(msg);
 
 // ヒットしたインドカレー店の住所をLINE botに返す
 return client.replyMessage(event.replyToken,[{
