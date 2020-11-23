@@ -45,6 +45,10 @@ async function handleEvent(event) {
   //ポストバック
   if(event.type == "postback"){
     console.log(event.postback.data);
+    return client.replyMessage(event.replyToken, {
+      type: 'text',
+      text: 'ポストバックです。'
+    });
   }
 
   ///メニューから位置情報で検索ボタンを押したとき
