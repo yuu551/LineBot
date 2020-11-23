@@ -188,6 +188,7 @@ if(event.message.text == 'お気に入りを表示'){
             
      }
     }
+    console.log(curry_pic);
   }).call().then( () => {
   msg = curmsg.replymessage(curry_pic,curry_url,shop_name,address,opentime,shopid);
   // ヒットしたインドカレー店の住所をLINE botに返す
