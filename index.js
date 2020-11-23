@@ -163,16 +163,17 @@ if(event.message.text == 'お気に入りを表示'){
          const encodeUrl = encodeURI(url);
          //test
             // ぐるなびAPIに問い合わせ
-              await axios.get(encodeUrl).then(response => {
-              console.log(response.data.rest[i]);
-              shop_name.push(response.data.rest[i].name)
-              shop_address.push(response.data.rest[i].address)
-              opentime.push(response.data.rest[i].opentime)
-              curry_url.push(response.data.rest[i].url_mobile);
-              curry_pic.push(response.data.rest[i].image_url.shop_image1);
-              address.push(response.data.rest[i].address);
-              phonenumber.push(response.data.rest[i].tel)
-              shopid.push(response.data.rest[i].id)
+              await axios.get(encodeUrl).then(res => {
+              console.log(res);
+              console.log(res.data.rest[i]);
+              shop_name.push(res.data.rest[i].name)
+              shop_address.push(res.data.rest[i].address)
+              opentime.push(res.data.rest[i].opentime)
+              curry_url.push(res.data.rest[i].url_mobile);
+              curry_pic.push(res.data.rest[i].image_url.shop_image1);
+              address.push(res.data.rest[i].address);
+              phonenumber.push(res.data.rest[i].tel)
+              shopid.push(res.data.rest[i].id)
               if(!curry_pic[i]){
                 curry_pic[i] = 'https://tblg.k-img.com/restaurant/images/Rvw/18549/640x640_rect_18549970.jpg'
               }
