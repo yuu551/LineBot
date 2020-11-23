@@ -185,8 +185,6 @@ if(event.message.text == 'お気に入りを表示'){
      }
      
   }
-}).call();
-
   msg = curmsg.replymessage(curry_pic,curry_url,shop_name,address,opentime,shopid);
   // ヒットしたインドカレー店の住所をLINE botに返す
   return client.replyMessage(event.replyToken,[{
@@ -194,6 +192,10 @@ if(event.message.text == 'お気に入りを表示'){
     text: 'お気に入りの店舗です。'
   },msg
 ]);
+  
+}).call();
+
+  
 
 }
 
