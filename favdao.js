@@ -14,9 +14,7 @@ const getWorks = () => {
       console.log(resp)
     })
     return worksTable
-      .list({
-        view: 'Grid view' // 作成したAppで使用しているViewを指定
-      })
+      .list()
       .then(response => {
         resolve(response)
       })
