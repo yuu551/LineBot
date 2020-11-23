@@ -188,12 +188,6 @@ if(event.message.text == 'お気に入りを表示'){
             
      }
     }
-    console.log(curry_pic);
-    console.log(curry_url)
-    console.log(shop_name)
-    console.log(address)
-    console.log(opentime)
-    console.log(shopid)
   }).call().then( () => {
   msg = curmsg.replymessage(curry_pic,curry_url,shop_name,address,opentime,shopid);
 
