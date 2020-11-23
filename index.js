@@ -177,11 +177,11 @@ if(event.message.text == 'お気に入りを表示'){
               address.push(res.data.rest[0].address);
               phonenumber.push(res.data.rest[0].tel)
               shopid.push(res.data.rest[0].id)
-              if(!curry_pic[num]){
-                curry_pic[num] = 'https://tblg.k-img.com/restaurant/images/Rvw/18549/640x640_rect_18549970.jpg'
+              if(!curry_pic[arrnum]){
+                curry_pic[arrnum] = 'https://tblg.k-img.com/restaurant/images/Rvw/18549/640x640_rect_18549970.jpg'
               }
-              if(!opentime[num]){
-                opentime[num] = '店舗へお尋ねください。'
+              if(!opentime[arrnum]){
+                opentime[arrnum] = '店舗へお尋ねください。'
               }
             });
             arrnum++;
