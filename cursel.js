@@ -95,6 +95,17 @@ exports.replymessage = function(curry_pic,curry_url,shop_name,address,opentime){
                       },
                       "height": "sm",
                       "style": "link"
+                    },
+                    {
+                      "type": "button",
+                      "action": {
+                        "type": "postback",
+                        "label": "お気に入りを登録する",
+                        "data": curry_url[0],
+                        "text":"お気に入りを登録する。"
+                      },
+                      "height": "sm",
+                      "style": "link"
                     }
                   ],
                   "flex": 0,
