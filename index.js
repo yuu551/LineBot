@@ -207,6 +207,7 @@ if(event.message.text == 'お気に入りを表示'){
   
   });
 
+  console.log(test12);
   return test12;
 }
 
