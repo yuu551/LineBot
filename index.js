@@ -39,13 +39,7 @@ async function handleEvent(event) {
       var msgs = [];
       console.log(event);
       console.log(event.source.userId);
-      const test = dao.GetFavCurry();
-      let Table;
-      dao.GetFavCurry().then(result => {
-        console.log(result);
-        Table = result;
-        console.log(Table);
-      } );
+      
   
 
   ///メニューから位置情報で検索ボタンを押したとき
@@ -199,6 +193,26 @@ if(event.type == 'message'){
   
   
 }
+///メニューから位置情報で検索ボタンを押したとき
+if(event.message.text == 'お気に入りを表示'){
+
+  let Table;
+  await dao.GetFavCurry().then(result => {
+        console.log(result);
+        Table = result;
+        console.log(Table);
+      });
+    console.log(Table);
+
+
+
+  return client.replyMessage(event.replyToken, {
+    type: 'text',
+    text: 'お気に入りを表示します。'
+  });
+}
+
+
   }
   app.listen(PORT);
   console.log(`Server running at ${PORT}`);
