@@ -153,7 +153,7 @@ if(event.message.text == 'お気に入りを表示'){
     console.log(Table);
     console.log(Table.records.length);
 
-  (async()=>{
+  const test = async()=>{
   for (var i = 0;i<Table.records.length;i++){
      if(Table.records[i].fields.UserId == event.source.userId)
      {  
@@ -188,16 +188,26 @@ if(event.message.text == 'お気に入りを表示'){
             
      }
     }
-  }).call();
-  console.log("確認");
+    console.log(curry_pic);
+    console.log(curry_url)
+    console.log(shop_name)
+    console.log(address)
+    console.log(opentime)
+    console.log(shopid)
+    .then( () => {
   msg = curmsg.replymessage(curry_pic,curry_url,shop_name,address,opentime,shopid);
   // ヒットしたインドカレー店の住所をLINE botに返す
   return client.replyMessage(event.replyToken,[{
     type: 'text',
     text: 'お気に入りの店舗です。'
   },msg
+]);
+    
+  
+  });
+}
+return test;
 
-])
 }
 
 if(event.type == 'message'){
