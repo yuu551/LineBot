@@ -22,6 +22,6 @@ exports.Test = function(){
             })
         })
       }
-      return getWorks;
+      
 
 }
