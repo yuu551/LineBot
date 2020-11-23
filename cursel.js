@@ -1,5 +1,4 @@
 exports.replymessage = function(curry_pic,curry_url,shop_name,address,opentime,shopid){
-  console.log(data);
     return{
       "type": "flex",
       "altText": "#",
