@@ -168,20 +168,20 @@ if(event.message.text == 'お気に入りを表示'){
             {
               console.log(res);
               console.log(res.data);
-              console.log(res.data.rest[i]);
-              shop_name.push(res.data.rest[i].name)
-              shop_address.push(res.data.rest[i].address)
-              opentime.push(res.data.rest[i].opentime)
-              curry_url.push(res.data.rest[i].url_mobile);
-              curry_pic.push(res.data.rest[i].image_url.shop_image1);
-              address.push(res.data.rest[i].address);
-              phonenumber.push(res.data.rest[i].tel)
-              shopid.push(res.data.rest[i].id)
-              if(!curry_pic[i]){
-                curry_pic[i] = 'https://tblg.k-img.com/restaurant/images/Rvw/18549/640x640_rect_18549970.jpg'
+              console.log(res.data.rest[0]);
+              shop_name.push(res.data.rest[0].name)
+              shop_address.push(res.data.rest[0].address)
+              opentime.push(res.data.rest[0].opentime)
+              curry_url.push(res.data.rest[0].url_mobile);
+              curry_pic.push(res.data.rest[0].image_url.shop_image1);
+              address.push(res.data.rest[0].address);
+              phonenumber.push(res.data.rest[0].tel)
+              shopid.push(res.data.rest[0].id)
+              if(!curry_pic[0]){
+                curry_pic[0] = 'https://tblg.k-img.com/restaurant/images/Rvw/18549/640x640_rect_18549970.jpg'
               }
-              if(!opentime[i]){
-                opentime[i] = '店舗へお尋ねください。'
+              if(!opentime[0]){
+                opentime[0] = '店舗へお尋ねください。'
               }
             });
      }
