@@ -11,7 +11,9 @@ const getFav = () => {
       .table('FavTable1')
     
     return worksTable
-      .list()
+      .list({
+        view: 'Grid view' // 作成したAppで使用しているViewを指定
+      })
       .then(response => {
         resolve(response)
       })

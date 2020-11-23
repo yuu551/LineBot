@@ -131,9 +131,7 @@ if(event.message.text == 'お気に入りを表示'){
 
   let Table;
   await dao.GetFavCurry().then(result => {
-        console.log(result);
         Table = result;
-        console.log(Table);
       });
     console.log(Table);
 
