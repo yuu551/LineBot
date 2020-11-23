@@ -163,7 +163,7 @@ if(event.message.text == 'お気に入りを表示'){
           try{
             // ぐるなびAPIに問い合わせ
              var response = await axios.get(encodeUrl)
-             shop_name.push(response.data.rest[num].name)
+              shop_name.push(response.data.rest[num].name)
               shop_address.push(response.data.rest[num].address)
               opentime.push(response.data.rest[num].opentime)
               curry_url.push(response.data.rest[num].url_mobile);
@@ -171,6 +171,12 @@ if(event.message.text == 'お気に入りを表示'){
               address.push(response.data.rest[num].address);
               phonenumber.push(response.data.rest[num].tel)
               shopid.push(response.data.rest[num].id)
+              if(!curry_pic[num]){
+                curry_pic[num] = 'https://tblg.k-img.com/restaurant/images/Rvw/18549/640x640_rect_18549970.jpg'
+              }
+              if(!opentime[num]){
+                opentime[num] = '店舗へお尋ねください。'
+              }
           } catch{
             continue;
           }      
