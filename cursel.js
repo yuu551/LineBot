@@ -100,9 +100,9 @@ exports.replymessage = function(curry_pic,curry_url,shop_name,address,opentime){
                       "type": "button",
                       "action": {
                         "type": "postback",
-                        "label": "お気に入りを登録する",
-                        "data": curry_url[0],
-                        "text":"お気に入りを登録する。"
+                        "label": "お気に入りに登録する",
+                        "data": curry_pic[0]+","+curry_url[0]+","+opentime[0]+","+address[0]+","+shop_name[0],
+                        "text":"お気に入りに登録する。"
                       },
                       "height": "sm",
                       "style": "link"
@@ -202,6 +202,17 @@ exports.replymessage = function(curry_pic,curry_url,shop_name,address,opentime){
                       },
                       "height": "sm",
                       "style": "link"
+                    },
+                    {
+                      "type": "button",
+                      "action": {
+                        "type": "postback",
+                        "label": "お気に入りに登録する",
+                        "data": curry_url[0],
+                        "text":"お気に入りに登録する。"
+                      },
+                      "height": "sm",
+                      "style": "link"
                     }
                   ],
                   "flex": 0,
@@ -295,6 +306,17 @@ exports.replymessage = function(curry_pic,curry_url,shop_name,address,opentime){
                         "type": "uri",
                         "uri": curry_url[2],
                         "label": "WebSite"
+                      },
+                      "height": "sm",
+                      "style": "link"
+                    },
+                    {
+                      "type": "button",
+                      "action": {
+                        "type": "postback",
+                        "label": "お気に入りに登録する",
+                        "data": curry_url[0],
+                        "text":"お気に入りに登録する。"
                       },
                       "height": "sm",
                       "style": "link"
@@ -406,6 +428,17 @@ exports.replymessage2 = function(curry_pic,curry_url,shop_name,address,opentime)
                     },
                     "height": "sm",
                     "style": "link"
+                  },
+                  {
+                    "type": "button",
+                    "action": {
+                      "type": "postback",
+                      "label": "お気に入りに登録する",
+                      "data": curry_url[0],
+                      "text":"お気に入りに登録する。"
+                    },
+                    "height": "sm",
+                    "style": "link"
                   }
                 ],
                 "flex": 0,
@@ -499,6 +532,17 @@ exports.replymessage2 = function(curry_pic,curry_url,shop_name,address,opentime)
                       "type": "uri",
                       "uri": curry_url[1],
                       "label": "WebSite"
+                    },
+                    "height": "sm",
+                    "style": "link"
+                  },
+                  {
+                    "type": "button",
+                    "action": {
+                      "type": "postback",
+                      "label": "お気に入りに登録する",
+                      "data": curry_url[0],
+                      "text":"お気に入りに登録する。"
                     },
                     "height": "sm",
                     "style": "link"
@@ -607,6 +651,17 @@ exports.replymessage1 = function(curry_pic,curry_url,shop_name,address,opentime)
                       "type": "uri",
                       "uri": curry_url[0],
                       "label": "WebSite"
+                    },
+                    "height": "sm",
+                    "style": "link"
+                  },
+                  {
+                    "type": "button",
+                    "action": {
+                      "type": "postback",
+                      "label": "お気に入りに登録する",
+                      "data": curry_url[0],
+                      "text":"お気に入りに登録する。"
                     },
                     "height": "sm",
                     "style": "link"
