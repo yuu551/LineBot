@@ -8,10 +8,6 @@ const getWorks = () => {
     const worksTable = new Airtable({ apiKey: AIRTABLE_API_KEY })
       .base(APP_ID)
       .table('FavTable1')
-    console.log(worksTable)
-    worksTable.list().then(resp => {
-      console.log(resp)
-    })
     return worksTable.list()
 }
 
