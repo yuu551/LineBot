@@ -1,5 +1,7 @@
 exports.replymessage = function(curry_pic,curry_url,shop_name,address,opentime){
     return{
+      "type": "flex",
+      "altText": "#",
             "type": "carousel",
             "contents": [
               {
