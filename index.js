@@ -153,7 +153,7 @@ if(event.message.text == 'お気に入りを表示'){
     console.log(Table);
     console.log(Table.records.length);
 
-  const test = async()=>{
+  const FavGet = async()=>{
   for (var i = 0;i<Table.records.length;i++){
      if(Table.records[i].fields.UserId == event.source.userId)
      {  
@@ -188,14 +188,8 @@ if(event.message.text == 'お気に入りを表示'){
             
      }
     }
-    console.log(curry_pic);
-    console.log(curry_url)
-    console.log(shop_name)
-    console.log(address)
-    console.log(opentime)
-    console.log(shopid)
   }
-  const test12 = await test().then( () => {
+  const favresult = await FavGet().then( () => {
   msg = curmsg.replymessage(curry_pic,curry_url,shop_name,address,opentime,shopid);
   // ヒットしたインドカレー店の住所をLINE botに返す
   return client.replyMessage(event.replyToken,[{
@@ -207,8 +201,7 @@ if(event.message.text == 'お気に入りを表示'){
   
   });
 
-  console.log(test12);
-  return test12;
+  return favresult;
 }
 
 if(event.type == 'message'){
