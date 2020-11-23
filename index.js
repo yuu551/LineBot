@@ -1,7 +1,7 @@
 const axios = require('axios');       
 const express = require('express');
 const line = require('@line/bot-sdk');
-const msg =require('./messages');
+const msgword =require('./messages');
 const curmsg =require('./cursel');
 const PORT = process.env.PORT || 3000;
 
@@ -135,7 +135,7 @@ if(event.type == 'message'){
     if(!opentime[num]){
       opentime[num] = '店舗へお尋ねください。'
     }
-    msgs.push(msg.replymessage(curry_pic[num],curry_url[num],shop_name[num],address[num],opentime[num]));
+    msgs.push(msgword.replymessage(curry_pic[num],curry_url[num],shop_name[num],address[num],opentime[num]));
     
   }
 
