@@ -1,5 +1,5 @@
 const Airtable = require('airtable-node');
-var Airtable = require('airtable');
+var Airttable = require('airtable');
 const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY;
 const APP_ID = process.env.APP_ID;
 
@@ -23,7 +23,7 @@ const getFav = () => {
 }
 
 const InsertRecord = () =>{
-  var base = new Airtable({apiKey:AIRTABLE_API_KEY }).base(APP_ID);
+  var base = new Airttable({apiKey:AIRTABLE_API_KEY }).base(APP_ID);
 
 base('FavTable1').create([
   {
