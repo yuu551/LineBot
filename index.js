@@ -163,8 +163,11 @@ if(event.message.text == 'お気に入りを表示'){
          const encodeUrl = encodeURI(url);
          //test
             // ぐるなびAPIに問い合わせ
-              await axios.get(encodeUrl).then(res => {
+              await axios.get(encodeUrl)
+              .then(res => 
+            {
               console.log(res);
+              console.log(res.data);
               console.log(res.data.rest[i]);
               shop_name.push(res.data.rest[i].name)
               shop_address.push(res.data.rest[i].address)
