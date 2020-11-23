@@ -42,6 +42,7 @@ async function handleEvent(event) {
       const test = dao.GetFavCurry();
       let Table;
       dao.GetFavCurry().then(result => {
+        console.log(result);
         Table = result;
       } );
       console.log(Table);
