@@ -92,17 +92,37 @@ async function handleEvent(event) {
 }
 console.log(curry_url[0]);
 console.log(curry_pic);
-msg = curmsg.replymessage(curry_pic,curry_url,shop_name,address,opentime);
-console.log(msg);
 
-// ヒットしたインドカレー店の住所をLINE botに返す
-return client.replyMessage(event.replyToken,[{
-  type: 'text',
-  text: '検索結果付近の店舗はこちらです！'
-},msg
+
+if(response.data.rest.length >2){
+  msg = curmsg.replymessage(curry_pic,curry_url,shop_name,address,opentime);
+  // ヒットしたインドカレー店の住所をLINE botに返す
+  return client.replyMessage(event.replyToken,[{
+    type: 'text',
+    text: '検索結果付近の店舗はこちらです！'
+  },msg
 ]);
+  }
+  else if(response.data.rest.length >1){
+    msg = curmsg.replymessage2(curry_pic,curry_url,shop_name,address,opentime);
+    // ヒットしたインドカレー店の住所をLINE botに返す
+    return client.replyMessage(event.replyToken,[{
+      type: 'text',
+      text: '検索結果付近の店舗はこちらです！'
+    },msg
+  ]);
+    }
+    else if(response.data.rest.length >0){
+      msg = curmsg.replymessage1(curry_pic,curry_url,shop_name,address,opentime);
+      // ヒットしたインドカレー店の住所をLINE botに返す
+      return client.replyMessage(event.replyToken,[{
+        type: 'text',
+        text: '検索結果付近の店舗はこちらです！'
+      },msg
+    ]);
   
 }
+  }
 
 if(event.type == 'message'){
   url = 'https://api.gnavi.co.jp/RestSearchAPI/v3/?keyid=6eecd3af974fcc7fa63d6ab8139269e6&freeword_condition=1&freeword=インドカレー,'+event.message.text
