@@ -3,7 +3,6 @@ const express = require('express');
 const line = require('@line/bot-sdk');
 const msgword =require('./messages');
 const curmsg =require('./cursel');
-const dao = require('./favdao');
 
 const PORT = process.env.PORT || 3000;
 
@@ -40,7 +39,6 @@ async function handleEvent(event) {
       var msgs = [];
       console.log(event);
       console.log(event.source.userId);
-      console.log(dao.Test);
   
 
   ///メニューから位置情報で検索ボタンを押したとき
