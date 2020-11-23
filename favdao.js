@@ -9,7 +9,7 @@ const getWorks = () => {
     const worksTable = new Airtable({ apiKey: AIRTABLE_API_KEY })
       .base(APP_ID)
       .table('FavTable1')
-
+    console.log(worksTable)
     return worksTable
       .list({
         view: 'Grid view' // 作成したAppで使用しているViewを指定
