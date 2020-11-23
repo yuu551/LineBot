@@ -1,4 +1,4 @@
-import Airtable from 'airtable-node'
+const Airtable = require('airtable-node');
 
 
 exports.Test = function(){
