@@ -152,7 +152,7 @@ if(event.message.text == 'お気に入りを表示'){
     console.log(Table);
     console.log(Table.records.length);
 
-  (async ()=>{
+(async () => {
   for (var i = 0;i<Table.records.length;i++){
      if(Table.records[i].fields.UserId == event.source.userId)
      {  
@@ -162,9 +162,9 @@ if(event.message.text == 'お気に入りを表示'){
          console.log(url);
          const encodeUrl = encodeURI(url);
          //test
-          try{
             // ぐるなびAPIに問い合わせ
-             　var response = await axios.get(encodeUrl)
+              await axios.get(encodeUrl).then(response =>
+              {
               shop_name.push(response.data.rest[num].name)
               shop_address.push(response.data.rest[num].address)
               opentime.push(response.data.rest[num].opentime)
@@ -179,12 +179,13 @@ if(event.message.text == 'お気に入りを表示'){
               if(!opentime[num]){
                 opentime[num] = '店舗へお尋ねください。'
               }
-          } catch{
-            continue;
-          }      
+              return Promise.resolve();
+            });
+          
      }
-     
-  }
+    }
+    
+  }).call();
   msg = curmsg.replymessage(curry_pic,curry_url,shop_name,address,opentime,shopid);
   // ヒットしたインドカレー店の住所をLINE botに返す
   return client.replyMessage(event.replyToken,[{
@@ -192,8 +193,6 @@ if(event.message.text == 'お気に入りを表示'){
     text: 'お気に入りの店舗です。'
   },msg
 ]);
-  
-}).call();
 
   
 
