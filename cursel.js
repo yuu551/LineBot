@@ -1,5 +1,4 @@
 exports.replymessage = function(curry_pic,curry_url,shop_name,address,opentime,shopid){
-  var data = curry_pic[0]+","+curry_url[0]+","+opentime[0]+","+address[0]+","+shop_name[0];
   console.log(data);
     return{
       "type": "flex",

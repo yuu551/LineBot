@@ -158,6 +158,7 @@ if(event.message.text == 'お気に入りを表示'){
         console.log("確認")
           // ぐるなびAPIを使うためのURLに経緯を加える
          url = 'https://api.gnavi.co.jp/RestSearchAPI/v3/?keyid=6eecd3af974fcc7fa63d6ab8139269e6&id=' + Table.records[i].fields.ShopId;
+         console.log(url);
          const encodeUrl = encodeURI(url);
          //test
           try{
@@ -171,6 +172,7 @@ if(event.message.text == 'お気に入りを表示'){
               address.push(response.data.rest[num].address);
               phonenumber.push(response.data.rest[num].tel)
               shopid.push(response.data.rest[num].id)
+              console.log(curry_url);
               if(!curry_pic[num]){
                 curry_pic[num] = 'https://tblg.k-img.com/restaurant/images/Rvw/18549/640x640_rect_18549970.jpg'
               }
