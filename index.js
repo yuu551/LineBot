@@ -53,7 +53,7 @@ async function handleEvent(event) {
   }
 
   //ポストバックした時用
-  if(event.type.message == "お気に入りに登録"){
+  if(event.type.message == "お気に入りに登録する。"){
     return null;
   }
 
@@ -152,18 +152,41 @@ if(event.message.text == 'お気に入りを表示'){
     console.log(Table);
 
   for (var i = 0;i<Table.records.length;i++){
-     const userid = Table.records[i].fields.UserId;
-     console.log(userid);
+     if(Table.records[i].fields.UserId == event.source.userId)
+     {  
+          // ぐるなびAPIを使うためのURLに経緯を加える
+         url = 'https://api.gnavi.co.jp/RestSearchAPI/v3/?keyid=6eecd3af974fcc7fa63d6ab8139269e6&id=' + Table.records[i].fields.ShopId;
+         const encodeUrl = encodeURI(url);
+         //test
+          try{
+            // ぐるなびAPIに問い合わせ
+             var response = await axios.get(encodeUrl)
+             shop_name.push(response.data.rest[num].name)
+              shop_address.push(response.data.rest[num].address)
+              opentime.push(response.data.rest[num].opentime)
+              curry_url.push(response.data.rest[num].url_mobile);
+              curry_pic.push(response.data.rest[num].image_url.shop_image1);
+              address.push(response.data.rest[num].address);
+              phonenumber.push(response.data.rest[num].tel)
+              shopid.push(response.data.rest[num].id)
+          } catch{
+            return client.replyMessage(event.replyToken, {
+            type: 'text',
+            text: '申し訳ございません。該当店舗は存在しません。。。'
+            });
+          }      
+
+
+     }
+     msg = curmsg.replymessage(curry_pic,curry_url,shop_name,address,opentime,shopid);
+  // ヒットしたインドカレー店の住所をLINE botに返す
+  return client.replyMessage(event.replyToken,[{
+    type: 'text',
+    text: 'お気に入りの店舗です。'
+  },msg
+]);
   }
 
-  await dao.InsertRecord();
-
-
-
-  return client.replyMessage(event.replyToken, {
-    type: 'text',
-    text: 'お気に入りを表示します。'
-  });
 }
 
 if(event.type == 'message'){
