@@ -3,7 +3,6 @@ const Airtable = require('airtable-node');
 
 exports.Test = function(){
 
-    const getWorks = () => {
         return new Promise((resolve, reject) => {
           const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY;
           const APP_ID = process.env.APP_ID;
@@ -21,7 +20,4 @@ exports.Test = function(){
               resolve(response)
             })
         })
-      }
-      
-
 }
