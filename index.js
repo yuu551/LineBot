@@ -90,6 +90,8 @@ async function handleEvent(event) {
     opentime[num] = '店舗へお尋ねください。'
   }
 }
+console.log(curry_url);
+console.log(curry_pic);
 msg = curmsg.replymessage(curry_pic,curry_url,shop_name,address,opentime);
 
 // ヒットしたインドカレー店の住所をLINE botに返す
