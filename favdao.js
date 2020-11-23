@@ -10,6 +10,9 @@ const getWorks = () => {
       .base(APP_ID)
       .table('FavTable1')
     console.log(worksTable)
+    worksTable.list().then(resp => {
+      console.log(resp)
+    })
     return worksTable
       .list({
         view: 'Grid view' // 作成したAppで使用しているViewを指定
