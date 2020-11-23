@@ -177,17 +177,16 @@ if(event.message.text == 'お気に入りを表示'){
             text: '申し訳ございません。該当店舗は存在しません。。。'
             });
           }      
-
-
      }
-     msg = curmsg.replymessage(curry_pic,curry_url,shop_name,address,opentime,shopid);
+     
+  }
+  msg = curmsg.replymessage(curry_pic,curry_url,shop_name,address,opentime,shopid);
   // ヒットしたインドカレー店の住所をLINE botに返す
   return client.replyMessage(event.replyToken,[{
     type: 'text',
     text: 'お気に入りの店舗です。'
   },msg
 ]);
-  }
 
 }
 
