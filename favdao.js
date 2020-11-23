@@ -1,7 +1,6 @@
 const Airtable = require('airtable-node');
 
 const getWorks = () => {
-  return new Promise((resolve, reject) => {
     const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY;
     const APP_ID = process.env.APP_ID;
     console.log(AIRTABLE_API_KEY)
@@ -13,12 +12,7 @@ const getWorks = () => {
     worksTable.list().then(resp => {
       console.log(resp)
     })
-    return worksTable
-      .list()
-      .then(response => {
-        resolve(response)
-      })
-  })
+    return worksTable.list()
 }
 
 exports.Test = getWorks;
