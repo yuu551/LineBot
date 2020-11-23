@@ -136,7 +136,7 @@ if(event.message.text == 'お気に入りを表示'){
     console.log(Table);
 
   for (var i = 0;i<Table.records.length;i++){
-     const userid = Table.records[i].fields.userId;
+     const userid = Table.records[i].fields.UserId;
      console.log(userid);
   }
 
