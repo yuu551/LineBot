@@ -135,6 +135,11 @@ if(event.message.text == 'お気に入りを表示'){
       });
     console.log(Table);
 
+  for (var i = 0;i<Table.records.length;i++){
+     const userid = Table.records[i].fields.userId;
+     console.log(userid);
+  }
+
 
 
   return client.replyMessage(event.replyToken, {
