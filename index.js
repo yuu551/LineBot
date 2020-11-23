@@ -40,10 +40,9 @@ async function handleEvent(event) {
       console.log(event);
       console.log(event.source.userId);
       const test = dao.GetFavCurry();
-      let Table
+      let Table;
       dao.GetFavCurry().then(result => {
         Table = result;
-        return Table;
       } );
       console.log(Table);
   
