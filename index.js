@@ -37,6 +37,7 @@ async function handleEvent(event) {
       var msg;
       var msgs = [];
       console.log(event);
+      console.log(event.source.userId);
   
 
   ///メニューから位置情報で検索ボタンを押したとき
