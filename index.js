@@ -90,8 +90,6 @@ async function handleEvent(event) {
     opentime[num] = '店舗へお尋ねください。'
   }
 }
-console.log(curry_url[0]);
-console.log(curry_pic);
 
 
 if(response.data.rest.length >2){
@@ -158,35 +156,38 @@ if(event.type == 'message'){
     if(!opentime[num]){
       opentime[num] = '店舗へお尋ねください。'
     }
-    msgs.push(msgword.replymessage(curry_pic[num],curry_url[num],shop_name[num],address[num],opentime[num]));
     
   }
-
-  
   if(response.data.rest.length >2){
+    msg = curmsg.replymessage(curry_pic,curry_url,shop_name,address,opentime);
     // ヒットしたインドカレー店の住所をLINE botに返す
     return client.replyMessage(event.replyToken,[{
       type: 'text',
       text: '検索結果付近の店舗はこちらです！'
-    },msgs[0],msgs[1],msgs[2]
+    },msg
   ]);
     }
     else if(response.data.rest.length >1){
+      msg = curmsg.replymessage2(curry_pic,curry_url,shop_name,address,opentime);
       // ヒットしたインドカレー店の住所をLINE botに返す
       return client.replyMessage(event.replyToken,[{
         type: 'text',
         text: '検索結果付近の店舗はこちらです！'
-      },msgs[0],msgs[1]
+      },msg
     ]);
       }
       else if(response.data.rest.length >0){
+        msg = curmsg.replymessage1(curry_pic,curry_url,shop_name,address,opentime);
         // ヒットしたインドカレー店の住所をLINE botに返す
         return client.replyMessage(event.replyToken,[{
           type: 'text',
           text: '検索結果付近の店舗はこちらです！'
-        },msgs[0]
+        },msg
       ]);
-        }
+    
+  }
+  
+  
 }
   }
   app.listen(PORT);
