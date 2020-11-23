@@ -22,18 +22,14 @@ const getFav = () => {
   })
 }
 
-const InsertRecord = () =>{
+const InsertRecord = (userid,shopid) =>{
   const base = new Airttable({apiKey:AIRTABLE_API_KEY }).base(APP_ID);
 
 base('FavTable1').create([
   {
     "fields": {
-      "UserId": "1004",
-      "CurryUrl": "Test2",
-      "CurryPic": "Test1",
-      "ShopName": "Tes3",
-      "Address": "3",
-      "OpenTime": "555"
+      "UserId": userid,
+      "ShopId": shopid
     }
   }
 ], function(err, records) {

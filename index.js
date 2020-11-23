@@ -52,6 +52,11 @@ async function handleEvent(event) {
     });
   }
 
+  //ポストバックした時用
+  if(event.type.message == "お気に入りに登録"){
+    return null;
+  }
+
   ///メニューから位置情報で検索ボタンを押したとき
   if(event.message.text == '位置情報から検索'){
     return client.replyMessage(event.replyToken, {
