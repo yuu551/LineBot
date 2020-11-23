@@ -2,6 +2,7 @@ exports.replymessage = function(curry_pic,curry_url,shop_name,address,opentime){
     return{
       "type": "flex",
       "altText": "#",
+      "contents":{
             "type": "carousel",
             "contents": [
               {
@@ -291,4 +292,5 @@ exports.replymessage = function(curry_pic,curry_url,shop_name,address,opentime){
               }
             ]
       }
+    }
     }
