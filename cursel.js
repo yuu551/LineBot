@@ -1,4 +1,5 @@
 exports.replymessage = function(curry_pic,curry_url,shop_name,address,opentime){
+  var data = curry_pic[0]+","+curry_url[0]+","+opentime[0]+","+address[0]+","+shop_name[0];
     return{
       "type": "flex",
       "altText": "#",
@@ -101,7 +102,7 @@ exports.replymessage = function(curry_pic,curry_url,shop_name,address,opentime){
                       "action": {
                         "type": "postback",
                         "label": "お気に入りに登録する",
-                        "data": curry_pic[0]+","+curry_url[0]+","+opentime[0]+","+address[0]+","+shop_name[0],
+                        "data": data,
                         "text":"お気に入りに登録する。"
                       },
                       "height": "sm",
