@@ -156,7 +156,7 @@ if(event.message.text == 'お気に入りを表示'){
   for (var i = 0;i<Table.records.length;i++){
      if(Table.records[i].fields.UserId == event.source.userId)
      {  
-        
+        num = 0;
           // ぐるなびAPIを使うためのURLに経緯を加える
          url = 'https://api.gnavi.co.jp/RestSearchAPI/v3/?keyid=6eecd3af974fcc7fa63d6ab8139269e6&id=' + Table.records[i].fields.ShopId;
          console.log(url);
@@ -166,9 +166,8 @@ if(event.message.text == 'お気に入りを表示'){
               await axios.get(encodeUrl)
               .then(res => 
             {
-              console.log(res);
-              console.log(res.data);
               console.log(res.data.rest[0]);
+              console.log(res.data.rest[0].name);
               shop_name.push(res.data.rest[0].name)
               shop_address.push(res.data.rest[0].address)
               opentime.push(res.data.rest[0].opentime)
@@ -177,13 +176,14 @@ if(event.message.text == 'お気に入りを表示'){
               address.push(res.data.rest[0].address);
               phonenumber.push(res.data.rest[0].tel)
               shopid.push(res.data.rest[0].id)
-              if(!curry_pic[0]){
-                curry_pic[0] = 'https://tblg.k-img.com/restaurant/images/Rvw/18549/640x640_rect_18549970.jpg'
+              if(!curry_pic[num]){
+                curry_pic[num] = 'https://tblg.k-img.com/restaurant/images/Rvw/18549/640x640_rect_18549970.jpg'
               }
-              if(!opentime[0]){
-                opentime[0] = '店舗へお尋ねください。'
+              if(!opentime[num]){
+                opentime[num] = '店舗へお尋ねください。'
               }
             });
+            num++;
      }
     }
   }).call().then( () => {
