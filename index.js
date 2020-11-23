@@ -214,7 +214,12 @@ if(event.type == 'message'){
       ]);
     
   }
-  
+
+  //ポストバック
+  if(event.type == "postback"){
+    console.log(event.postback.data);
+  }
+
   
 }
 
