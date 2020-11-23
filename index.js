@@ -150,13 +150,13 @@ if(event.message.text == 'お気に入りを表示'){
         Table = result;
       });
     console.log(Table);
-    console.log(Table.records.length)
+    console.log(Table.records.length);
 
   (async ()=>{
   for (var i = 0;i<Table.records.length;i++){
      if(Table.records[i].fields.UserId == event.source.userId)
      {  
-        console.log("確認")
+        
           // ぐるなびAPIを使うためのURLに経緯を加える
          url = 'https://api.gnavi.co.jp/RestSearchAPI/v3/?keyid=6eecd3af974fcc7fa63d6ab8139269e6&id=' + Table.records[i].fields.ShopId;
          console.log(url);
@@ -173,7 +173,6 @@ if(event.message.text == 'お気に入りを表示'){
               address.push(response.data.rest[num].address);
               phonenumber.push(response.data.rest[num].tel)
               shopid.push(response.data.rest[num].id)
-              console.log(curry_url);
               if(!curry_pic[num]){
                 curry_pic[num] = 'https://tblg.k-img.com/restaurant/images/Rvw/18549/640x640_rect_18549970.jpg'
               }
@@ -187,6 +186,7 @@ if(event.message.text == 'お気に入りを表示'){
      
   }
 }).call();
+
   msg = curmsg.replymessage(curry_pic,curry_url,shop_name,address,opentime,shopid);
   // ヒットしたインドカレー店の住所をLINE botに返す
   return client.replyMessage(event.replyToken,[{
