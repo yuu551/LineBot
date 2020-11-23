@@ -44,8 +44,8 @@ async function handleEvent(event) {
       dao.GetFavCurry().then(result => {
         console.log(result);
         Table = result;
+        console.log(Table);
       } );
-      console.log(Table);
   
 
   ///メニューから位置情報で検索ボタンを押したとき
