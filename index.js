@@ -206,6 +206,8 @@ if(event.message.text == 'お気に入りを表示'){
   
   });
 }
+console.log("確認君");
+console.log(test)
 return test;
 
 }
