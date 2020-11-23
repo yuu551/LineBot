@@ -164,7 +164,7 @@ if(event.message.text == 'お気に入りを表示'){
          //test
             // ぐるなびAPIに問い合わせ
               await axios.get(encodeUrl).then(response => {
-              console.log(response);
+              console.log(response.data.rest[i]);
               shop_name.push(response.data.rest[i].name)
               shop_address.push(response.data.rest[i].address)
               opentime.push(response.data.rest[i].opentime)
