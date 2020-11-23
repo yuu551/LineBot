@@ -90,7 +90,7 @@ async function handleEvent(event) {
     opentime[num] = '店舗へお尋ねください。'
   }
 }
-console.log(curry_url);
+console.log(curry_url[0]);
 console.log(curry_pic);
 msg = curmsg.replymessage(curry_pic,curry_url,shop_name,address,opentime);
 console.log(msg);
