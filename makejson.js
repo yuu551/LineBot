@@ -120,7 +120,7 @@ const baseJson =
 exports.makeJson = function(curry_pic,curry_url,shop_name,address,opentime,shopid,arraylength){
 
   let contentpart = [];
-  for(let i =0;i<6;i++){
+  for(let i =0;i<5;i++){
   contentpart[i] = content;
   contentpart[i].hero.url = curry_pic[i];
   contentpart[i].body.contents[0].text = shop_name[i]
