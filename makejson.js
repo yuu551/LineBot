@@ -121,7 +121,7 @@ exports.makeJson = function(curry_pic,curry_url,shop_name,address,opentime,shopi
 
   let contentpart = [];
   for(let i =0;i<5;i++){
-  contentpart[i] = content;
+  contentpart[i] = Object.assign({},content);
   contentpart[i].hero.url = curry_pic[i];
   contentpart[i].body.contents[0].text = shop_name[i]
   contentpart[i].body.contents[1].contents[0].contents[1].text = address[i]
