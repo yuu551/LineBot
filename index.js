@@ -1,8 +1,8 @@
 const axios = require('axios');       
 const express = require('express');
 const line = require('@line/bot-sdk');
-const msgword =require('./messages');
 const curmsg =require('./cursel');
+const makejson = require('./makejson');
 const dao = require('./favdao');
 const PORT = process.env.PORT || 3000;
 
@@ -190,7 +190,7 @@ if(event.message.text == 'お気に入りを表示'){
     }
   }
   const favresult = await FavGet().then( () => {
-  msg = curmsg.replymessage(curry_pic,curry_url,shop_name,address,opentime,shopid);
+  msg = makejson.makeJson(curry_pic,curry_url,shop_name,address,opentime,shopid,arrnum);
   // ヒットしたインドカレー店の住所をLINE botに返す
   return client.replyMessage(event.replyToken,[{
     type: 'text',
