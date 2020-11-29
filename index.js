@@ -115,9 +115,10 @@ async function handleEvent(event) {
   }
 
   //ポストバックした時用
-  if(event.message.text == "お気に入りに登録する。"){
+  if(event.message.text == "お気に入りに登録する。" || event.message.text == "お気に入りから削除する"){
     return null;
   }
+  
 
   ///メニューから位置情報で検索ボタンを押したとき
   if(event.message.text == '位置情報から検索'){
