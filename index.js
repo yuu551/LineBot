@@ -208,7 +208,7 @@ if(response.data.rest.length >2){
   ///お気に入りを表示
 if(event.message.text == 'お気に入りを表示'){
 
-  var arrnum = 0; 
+  let arrnum = 0; 
   let Table;
   //ユーザーIDをハッシュ化
   const hashedid = crypto.createHash('sha256').update(event.source.userId, 'utf8').digest('hex');
