@@ -238,6 +238,13 @@ if(event.message.text == 'お気に入りを表示'){
             
      }
     }
+    if(arrnum<1){
+      return client.replyMessage(event.replyToken,[{
+        type: 'text',
+        text: 'お気に入り店舗が登録されていません。。。'
+      },
+    ]);
+    }
   }
   //取得した情報でオブジェクトを生成
   const favresult = await FavGet().then( () => {
