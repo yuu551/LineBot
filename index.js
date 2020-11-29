@@ -7,6 +7,7 @@ const dao = require('./favdao');
 const crypto = require('crypto');
 const PORT = process.env.PORT || 3000;
 
+//herokuの環境変数に
 const config = {
     channelSecret:process.env.SECRET_KEY,
     channelAccessToken:process.env.ACCESS_TOKEN
@@ -27,7 +28,9 @@ app.post('/hook', line.middleware(config), (req, res) => {
 const client = new line.Client(config);
 
 
+//イベントハンドラー
 async function handleEvent(event) {
+  //各種アイテムを初期化
       var hitnum = [];
       var shop_name = [];
       var shop_address = [];
@@ -39,12 +42,9 @@ async function handleEvent(event) {
       var shopid = [];
       var msg;
       var msgs = [];
-      console.log(event);
-      console.log(event.source.userId);
       
-  
 
-  //ポストバック
+  //ポストバックイベント
   if(event.type == "postback"){
     const hashedid = crypto.createHash('sha256').update(event.source.userId, 'utf8').digest('hex');
     await dao.InsertRecord(hashedid,event.postback.data);
@@ -149,6 +149,7 @@ if(event.message.text == 'お気に入りを表示'){
 
   var arrnum = 0; 
   let Table;
+  //ユーザーIDをハッシュ化
   const hashedid = crypto.createHash('sha256').update(event.source.userId, 'utf8').digest('hex');
   await dao.GetFavCurry().then(result => {
         Table = result;

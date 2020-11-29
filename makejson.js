@@ -1,3 +1,12 @@
+const baseJson = 
+{
+    "type": "flex",
+    "altText": "#",
+    "contents":{
+          "type": "carousel",
+          "contents": []
+    }
+  }
 
 exports.makeJson = function(curry_pic,curry_url,shop_name,address,opentime,shopid,arraylength){
 
