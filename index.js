@@ -250,6 +250,7 @@ if(event.message.text == 'お気に入りを表示'){
               }
             });
             arrnum++;
+            console.log(arrnum);
             
      }
     }
