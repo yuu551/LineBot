@@ -123,8 +123,40 @@ async function handleEvent(event) {
   ///メニューから位置情報で検索ボタンを押したとき
   if(event.message.text == '位置情報から検索'){
     return client.replyMessage(event.replyToken, {
-      type: 'text',
-      text: '自分の位置情報を送信してください！'
+      "type": "bubble",
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "位置情報を送信してください！",
+            "align": "center"
+          }
+        ]
+      },
+      "footer": {
+        "type": "box",
+        "layout": "vertical",
+        "spacing": "sm",
+        "contents": [
+          {
+            "type": "button",
+            "style": "link",
+            "height": "sm",
+            "action": {
+              "type": "uri",
+              "label": "位置情報を送る",
+              "uri": "line://nv/location"
+            }
+          },
+          {
+            "type": "spacer",
+            "size": "sm"
+          }
+        ],
+        "flex": 0
+      }
     });
   }
   ///メニューから地名で検索を押したとき
