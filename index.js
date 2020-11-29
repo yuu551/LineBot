@@ -53,15 +53,15 @@ async function handleEvent(event) {
     
     case "Insert":
       const hashedid = crypto.createHash('sha256').update(event.source.userId, 'utf8').digest('hex');
-      let Table;
+      let InsertTable;
       let recordcount =0;
       await dao.GetFavCurry().then(result => {
-          Table = result;
+          InsertTable = result;
         });
 
       //すでに登録しているか確認
-      for(var i = 0;i<Table.records.length;i++){
-        if(Table.records[i].fields.UserId == hashedid && Table.records[i].fields.ShopId == postbackdata[0])
+      for(var i = 0;i<InsertTable.records.length;i++){
+        if(InsertTable.records[i].fields.UserId == hashedid && InsertTable.records[i].fields.ShopId == postbackdata[0])
         {
           //登録済みレコードがあった場合リターン
           return client.replyMessage(event.replyToken, {
@@ -70,7 +70,7 @@ async function handleEvent(event) {
           });
         }
         //自分のIDとマッチしていたらレコードカウント追加
-        if(Table.records[i].fields.UserId == hashedid)
+        if(InsertTable.records[i].fields.UserId == hashedid)
         {
           recordcount++;
         }
