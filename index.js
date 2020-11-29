@@ -55,7 +55,7 @@ async function handleEvent(event) {
   }
 
   //ポストバックした時用
-  if(event.type.message == "お気に入りに登録する。"){
+  if(event.message.text == "お気に入りに登録する。"){
     return null;
   }
 
@@ -198,7 +198,7 @@ if(event.message.text == 'お気に入りを表示'){
   // ヒットしたインドカレー店の住所をLINE botに返す
   return client.replyMessage(event.replyToken,[{
     type: 'text',
-    text: 'お気に入りの店舗です。'
+    text: 'お気に入りの店舗です！'
   },msg
 ]);
     
@@ -221,9 +221,6 @@ if(event.type == 'message'){
       text: '申し訳ございません。該当店舗は存在しません。。。'
     });
   }                  
-
-
-
 
   //レスポンスの中からを探索
   for(var num = 0; num < response.data.rest.length; num++){
