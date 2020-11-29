@@ -109,9 +109,9 @@ exports.makeJson = function(curry_pic,curry_url,shop_name,address,opentime,shopi
           "type": "button",
           "action": {
             "type": "postback",
-            "label": "お気に入りに登録する",
+            "label": "お気に入りから削除する",
             "data": "",             //footer.contents[1].action.data
-            "text":"お気に入りに登録する。"
+            "text":"お気に入りから削除する"
           },
           "height": "sm",
           "style": "link"
