@@ -101,7 +101,7 @@ async function handleEvent(event) {
         for(var i = 0;i<DeleteTable.records.length;i++){
             if(DeleteTable.records[i].fields.UserId == hashedidfordelete && DeleteTable.records[i].fields.ShopId == postbackdata[0])
             {
-              await dao.Deleterecord(Table.records[i].id);
+              await dao.Deleterecord(DeleteTable.records[i].id);
             }
           }
 
