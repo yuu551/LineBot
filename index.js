@@ -216,6 +216,8 @@ if(event.message.text == 'お気に入りを表示'){
         Table = result;
       });
   //非同期で各IDに結び付く店舗情報を取得する関数
+  console.log(Table);
+  console.log(arrnum);
   const FavGet = async()=>{
   for (var i = 0;i<Table.records.length;i++){
      if(Table.records[i].fields.UserId == hashedid)
