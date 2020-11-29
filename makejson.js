@@ -1,3 +1,4 @@
+//ベースとなるオブジェクト contents.contentsにプッシュする。
 const baseJson = 
 {
     "type": "flex",
@@ -12,6 +13,7 @@ exports.makeJson = function(curry_pic,curry_url,shop_name,address,opentime,shopi
 
   let contentpart = [];
   for(let i =0;i<arraylength;i++){
+  //オブジェクトの値渡しが出来なかったためここで定義
   contentpart[i] = {
     "type": "bubble",
     "size": "kilo",
@@ -124,9 +126,8 @@ exports.makeJson = function(curry_pic,curry_url,shop_name,address,opentime,shopi
   contentpart[i].body.contents[1].contents[0].contents[1].text = address[i]
   contentpart[i].body.contents[1].contents[1].contents[1].text = opentime[i];
   contentpart[i].footer.contents[0].action.uri = curry_url[i]
-  contentpart[i].footer.contents[1].action.data = shopid[i]
+  contentpart[i].footer.contents[1].action.data = shopid[i] + "," + "delete";
   baseJson.contents.contents.push(contentpart[i])
   }
-  console.log(shop_name)
   return baseJson;
 }

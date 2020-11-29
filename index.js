@@ -7,7 +7,7 @@ const dao = require('./favdao');
 const crypto = require('crypto');
 const PORT = process.env.PORT || 3000;
 
-//herokuの環境変数に
+//herokuの環境変数
 const config = {
     channelSecret:process.env.SECRET_KEY,
     channelAccessToken:process.env.ACCESS_TOKEN
@@ -44,29 +44,61 @@ async function handleEvent(event) {
       var msgs = [];
       
 
-  //ポストバックイベント
+  //ポストバックイベント(お気に入りに登録押下時)
   if(event.type == "postback"){
-    const hashedid = crypto.createHash('sha256').update(event.source.userId, 'utf8').digest('hex');
-    let Table;
-    await dao.GetFavCurry().then(result => {
-        Table = result;
-      });
 
-    //すでに登録しているか確認
-    for(var i = 0;i<Table.records.length;i++){
-      if(Table.records[i].fields.UserId == hashedid && Table.records[i].fields.ShopId == event.postback.data)
-      {
+    let postbackdata = event.postback.data.split(',');
+
+    switch(postbackdata[1]){
+    
+    case "Insert":
+      const hashedid = crypto.createHash('sha256').update(event.source.userId, 'utf8').digest('hex');
+      let Table;
+      let recordcount =0;
+      await dao.GetFavCurry().then(result => {
+          Table = result;
+        });
+
+      //すでに登録しているか確認
+      for(var i = 0;i<Table.records.length;i++){
+        if(Table.records[i].fields.UserId == hashedid && Table.records[i].fields.ShopId == postbackdata[0])
+        {
+          //登録済みレコードがあった場合リターン
+          return client.replyMessage(event.replyToken, {
+            type: 'text',
+            text: 'お気に入りに登録済みです。。。'
+          });
+        }
+        //自分のIDとマッチしていたらレコードカウント追加
+        if(Table.records[i].fields.UserId == hashedid)
+        {
+          recordcount++;
+        }
+      }
+      //10件より多く該当レコードがあった場合
+      if(recordcount>10){
         return client.replyMessage(event.replyToken, {
           type: 'text',
-          text: 'お気に入りに登録済みです。。。'
+          text: '10件より多くは登録できません。。。'
         });
       }
-    }
-    await dao.InsertRecord(hashedid,event.postback.data);
-    return client.replyMessage(event.replyToken, {
-      type: 'text',
-      text: 'お気に入りに登録完了しました！'
-    });
+
+      //レコードをインサート
+      await dao.InsertRecord(hashedid,event.postbackdata[0]);
+      return client.replyMessage(event.replyToken, {
+        type: 'text',
+        text: 'お気に入りに登録完了しました！'
+      });
+
+
+    case "delete":
+
+      return client.replyMessage(event.replyToken, {
+        type: 'text',
+        text: 'テストです！'
+      });
+
+  }
   }
 
   //ポストバックした時用
@@ -88,6 +120,7 @@ async function handleEvent(event) {
       text: '検索したい地名を入力してください!'
     });
   }
+
   ///位置情報が送信されたとき
   if(event.message.type == 'location'){
   // 取得した位置情報をログに表示
@@ -119,7 +152,7 @@ async function handleEvent(event) {
   curry_pic.push(response.data.rest[num].image_url.shop_image1);
   address.push(response.data.rest[num].address);
   phonenumber.push(response.data.rest[num].tel)
-  shopid.push(response.data.rest[num].id)
+  shopid.push(response.data.rest[num].id+","+"Insert")
   if(!curry_pic[num]){
     curry_pic[num] = 'https://tblg.k-img.com/restaurant/images/Rvw/18549/640x640_rect_18549970.jpg'
   }
@@ -169,7 +202,7 @@ if(event.message.text == 'お気に入りを表示'){
   await dao.GetFavCurry().then(result => {
         Table = result;
       });
-    
+  //非同期で各IDに結び付く店舗情報を取得する関数
   const FavGet = async()=>{
   for (var i = 0;i<Table.records.length;i++){
      if(Table.records[i].fields.UserId == hashedid)
@@ -206,6 +239,7 @@ if(event.message.text == 'お気に入りを表示'){
      }
     }
   }
+  //取得した情報でオブジェクトを生成
   const favresult = await FavGet().then( () => {
   msg = makejson.makeJson(curry_pic,curry_url,shop_name,address,opentime,shopid,arrnum);
   // ヒットしたインドカレー店の住所をLINE botに返す
@@ -221,6 +255,7 @@ if(event.message.text == 'お気に入りを表示'){
   return favresult;
 }
 
+//地名で検索時。基本的にメッセージをすべて拾ってしまうためイベントを発生したい場合はここより上で設定。
 if(event.type == 'message'){
   url = 'https://api.gnavi.co.jp/RestSearchAPI/v3/?keyid=6eecd3af974fcc7fa63d6ab8139269e6&freeword_condition=1&freeword=インドカレー,'+event.message.text
   const encodeUrl = encodeURI(url);
@@ -246,7 +281,7 @@ if(event.type == 'message'){
     curry_pic.push(response.data.rest[num].image_url.shop_image1);
     address.push(response.data.rest[num].address);
     phonenumber.push(response.data.rest[num].tel)
-    shopid.push(response.data.rest[num].id)
+    shopid.push(response.data.rest[num].id+","+"Insert")
     if(!curry_pic[num]){
       curry_pic[num] = 'https://tblg.k-img.com/restaurant/images/Rvw/18549/640x640_rect_18549970.jpg'
     }
@@ -283,14 +318,8 @@ if(event.type == 'message'){
       ]);
     
   }
-
-  
-
   
 }
-
-
-
   }
   app.listen(PORT);
   console.log(`Server running at ${PORT}`);
