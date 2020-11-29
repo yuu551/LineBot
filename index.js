@@ -4,6 +4,7 @@ const line = require('@line/bot-sdk');
 const curmsg =require('./cursel');
 const makejson = require('./makejson');
 const dao = require('./favdao');
+const crypto = require('crypto');
 const PORT = process.env.PORT || 3000;
 
 const config = {
@@ -45,7 +46,8 @@ async function handleEvent(event) {
 
   //ポストバック
   if(event.type == "postback"){
-    await dao.InsertRecord(event.source.userId,event.postback.data);
+    const hashedid = crypto.createHash('sha256').update(event.source.userId, 'utf8').digest('hex');
+    await dao.InsertRecord(hashedid,event.postback.data);
     return client.replyMessage(event.replyToken, {
       type: 'text',
       text: 'お気に入りに登録完了しました！'
