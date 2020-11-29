@@ -92,13 +92,13 @@ async function handleEvent(event) {
 
 
     case "Delete":
-      let Table;
+      let DeleteTable;
       const hashedid = crypto.createHash('sha256').update(event.source.userId, 'utf8').digest('hex');
       await dao.GetFavCurry().then(result => {
-        Table = result;
+        DeleteTable = result;
         });
-          for(var i = 0;i<Table.records.length;i++){
-            if(Table.records[i].fields.UserId == hashedid && Table.records[i].fields.ShopId == postbackdata[0])
+        for(var i = 0;i<DeleteTable.records.length;i++){
+            if(DeleteTable.records[i].fields.UserId == hashedid && DeleteTable.records[i].fields.ShopId == postbackdata[0])
             {
               await dao.Deleterecord(Table.records[i].id);
             }
