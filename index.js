@@ -123,6 +123,9 @@ async function handleEvent(event) {
   ///メニューから位置情報で検索ボタンを押したとき
   if(event.message.text == '位置情報から検索'){
     return client.replyMessage(event.replyToken, {
+      "type": "flex",
+  "altText": "#",
+  "contents":{
       "type": "bubble",
       "body": {
         "type": "box",
@@ -157,6 +160,7 @@ async function handleEvent(event) {
         ],
         "flex": 0
       }
+    }
     });
   }
   ///メニューから地名で検索を押したとき
