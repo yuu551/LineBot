@@ -279,6 +279,14 @@ if(event.message.text == 'お気に入りを表示'){
 
   return favresult;
 }
+if(event.message.text == "liff")
+{
+  return client.replyMessage(event.replyToken,[{
+    type: 'text',
+    text: 'https://liff.line.me/1655284805-OjjNM1Xx'
+  }
+]);
+}
 
 //地名で検索時。基本的にメッセージをすべて拾ってしまうためイベントを発生したい場合はここより上で設定。
 if(event.type == 'message'){
