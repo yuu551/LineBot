@@ -42,10 +42,21 @@ base('FavTable1').create([
 });
 }
 
-//todo 登録しているかチェック
-const IsRegist = (userid,shopid) =>{
-  
+//todo 削除メソッド
+const Deleterecord = (recordid) =>{
+
+  const base = new Airtable({apiKey: AIRTABLE_API_KEY}).base(APP_ID);
+
+  base('FavTable1').destroy([recordid], function(err, deletedRecords) {
+  if (err) {
+    console.error(err);
+    return;
+  }
+  console.log('Deleted', deletedRecords.length, 'records');
+});
+
 }
 
 exports.GetFavCurry = getFav;
 exports.InsertRecord = InsertRecord;
+exports.Deleterecord = Deleterecord;

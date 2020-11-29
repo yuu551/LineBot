@@ -92,10 +92,22 @@ async function handleEvent(event) {
 
 
     case "Delete":
+      let Table;
+      const hashedid = crypto.createHash('sha256').update(event.source.userId, 'utf8').digest('hex');
+      await dao.GetFavCurry().then(result => {
+        Table = result;
+        });
+          for(var i = 0;i<Table.records.length;i++){
+            if(Table.records[i].fields.UserId == hashedid && Table.records[i].fields.ShopId == postbackdata[0])
+            {
+              await dao.Deleterecord(Table.records[i].id);
+            }
+          }
+
 
       return client.replyMessage(event.replyToken, {
         type: 'text',
-        text: 'テストです！'
+        text: 'お気に入りから削除しました！'
       });
 
   }
