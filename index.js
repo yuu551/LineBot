@@ -48,7 +48,7 @@ async function handleEvent(event) {
   if(event.type == "postback"){
 
     let postbackdata = event.postback.data.split(',');
-
+    console.log(postbackdata)
     switch(postbackdata[1]){
     
     case "Insert":
@@ -84,14 +84,14 @@ async function handleEvent(event) {
       }
 
       //レコードをインサート
-      await dao.InsertRecord(hashedid,event.postbackdata[0]);
+      await dao.InsertRecord(hashedid,postbackdata[0]);
       return client.replyMessage(event.replyToken, {
         type: 'text',
         text: 'お気に入りに登録完了しました！'
       });
 
 
-    case "delete":
+    case "Delete":
 
       return client.replyMessage(event.replyToken, {
         type: 'text',
@@ -238,6 +238,7 @@ if(event.message.text == 'お気に入りを表示'){
             
      }
     }
+    //　一件も登録されていない場合
     if(arrnum<1){
       return client.replyMessage(event.replyToken,[{
         type: 'text',
