@@ -11,7 +11,10 @@ const baseJson =
 
 exports.makeJson = function(curry_pic,curry_url,shop_name,address,opentime,shopid,arraylength){
 
+  //初期化する。
+  baseJson.contents.contents = [];
   let contentpart = [];
+  console.log(arraylength);
   for(let i =0;i<arraylength;i++){
   //オブジェクトの値渡しが出来なかったためここで定義
   contentpart[i] = {
