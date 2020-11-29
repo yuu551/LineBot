@@ -45,7 +45,7 @@ base('FavTable1').create([
 //todo 削除メソッド
 const Deleterecord = (recordid) =>{
 
-  const base = new Airtable({apiKey: AIRTABLE_API_KEY}).base(APP_ID);
+  const base = new Airttable({apiKey: AIRTABLE_API_KEY}).base(APP_ID);
 
   base('FavTable1').destroy([recordid], function(err, deletedRecords) {
   if (err) {
