@@ -47,6 +47,21 @@ async function handleEvent(event) {
   //ポストバックイベント
   if(event.type == "postback"){
     const hashedid = crypto.createHash('sha256').update(event.source.userId, 'utf8').digest('hex');
+    let Table;
+    await dao.GetFavCurry().then(result => {
+        Table = result;
+      });
+
+    //すでに登録しているか確認
+    for(var i = 0;i<Table.records.length;i++){
+      if(Table.records[i].fields.UserId == hashedid && Table.records[i].fields.ShopId == event.postback.data)
+      {
+        return client.replyMessage(event.replyToken, {
+          type: 'text',
+          text: 'お気に入りに登録済みです。。。'
+        });
+      }
+    }
     await dao.InsertRecord(hashedid,event.postback.data);
     return client.replyMessage(event.replyToken, {
       type: 'text',
@@ -154,9 +169,7 @@ if(event.message.text == 'お気に入りを表示'){
   await dao.GetFavCurry().then(result => {
         Table = result;
       });
-    console.log(Table);
-    console.log(Table.records.length);
-
+    
   const FavGet = async()=>{
   for (var i = 0;i<Table.records.length;i++){
      if(Table.records[i].fields.UserId == hashedid)

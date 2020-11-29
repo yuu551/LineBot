@@ -3,7 +3,7 @@ var Airttable = require('airtable');
 const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY;
 const APP_ID = process.env.APP_ID;
 
-
+//お気に入り一覧を表示
 const getFav = () => {
   return new Promise((resolve, reject) => {
     const worksTable = new Airtable({ apiKey: AIRTABLE_API_KEY })
@@ -20,6 +20,7 @@ const getFav = () => {
   })
 }
 
+//レコードをインサート
 const InsertRecord = (userid,shopid) =>{
   const base = new Airttable({apiKey:AIRTABLE_API_KEY }).base(APP_ID);
 
@@ -39,6 +40,11 @@ base('FavTable1').create([
     console.log(record.get('UserId'));
   });
 });
+}
+
+//todo 登録しているかチェック
+const IsRegist = (userid,shopid) =>{
+  
 }
 
 exports.GetFavCurry = getFav;
