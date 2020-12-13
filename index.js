@@ -180,9 +180,7 @@ async function handleEvent(event) {
 
   ///位置情報が送信されたとき
   if(event.message.type == 'location'){
-  // 取得した位置情報をログに表示
-  console.log(event.message.latitude + ' : ' + event.message.longitude);
-
+  
   // ぐるなびAPIを使うためのURLに経緯を加える
   url = 'https://api.gnavi.co.jp/RestSearchAPI/v3/?keyid=6eecd3af974fcc7fa63d6ab8139269e6&latitude=' + event.message.latitude + '&longitude=' + event.message.longitude + '&freeword=インドカレー&range=4';
   const encodeUrl = encodeURI(url);
@@ -259,8 +257,6 @@ if(event.message.text == 'お気に入りを表示'){
         Table = result;
       });
   //非同期で各IDに結び付く店舗情報を取得する関数
-  console.log(Table);
-  console.log(arrnum);
   const FavGet = async()=>{
   for (var i = 0;i<Table.records.length;i++){
      if(Table.records[i].fields.UserId == hashedid)
@@ -268,15 +264,11 @@ if(event.message.text == 'お気に入りを表示'){
         
           // ぐるなびAPIを使うためのURLに経緯を加える
          url = 'https://api.gnavi.co.jp/RestSearchAPI/v3/?keyid=6eecd3af974fcc7fa63d6ab8139269e6&id=' + Table.records[i].fields.ShopId;
-         console.log(url);
          const encodeUrl = encodeURI(url);
-         //test
             // ぐるなびAPIに問い合わせ
               await axios.get(encodeUrl)
               .then(res => 
             {
-              console.log(res.data.rest[0]);
-              console.log(res.data.rest[0].name);
               shop_name.push(res.data.rest[0].name)
               shop_address.push(res.data.rest[0].address)
               opentime.push(res.data.rest[0].opentime)
@@ -319,6 +311,7 @@ if(event.message.text == 'お気に入りを表示'){
 
   return favresult;
 }
+//TODO　LIFF アプリ用
 if(event.message.text == "liff")
 {
   return client.replyMessage(event.replyToken,[{
