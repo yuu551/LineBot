@@ -41,20 +41,24 @@ async function handleEvent(event) {
       var phonenumber = [];
       var shopid = [];
       var msg;
-      var msgs = [];
       
 
   //ポストバックイベント(お気に入りに登録押下時)
   if(event.type == "postback"){
 
+    //カンマ区切りで属性判断　ex.Delete or Insert
     let postbackdata = event.postback.data.split(',');
-    console.log(postbackdata)
+    
+    //switch文で分岐
     switch(postbackdata[1]){
     
     case "Insert":
+      //UserIdをハッシュ化
       const hashedid = crypto.createHash('sha256').update(event.source.userId, 'utf8').digest('hex');
       let InsertTable;
       let recordcount =0;
+
+      //お気に入り情報を取得
       await dao.GetFavCurry().then(result => {
           InsertTable = result;
         });
@@ -94,7 +98,9 @@ async function handleEvent(event) {
 
     case "Delete":
       let DeleteTable;
+      //UserIdをハッシュ化
       const hashedidfordelete = crypto.createHash('sha256').update(event.source.userId, 'utf8').digest('hex');
+      //削除するために一旦テーブル情報を取得
       await dao.GetFavCurry().then(result => {
         DeleteTable = result;
         });
@@ -114,7 +120,7 @@ async function handleEvent(event) {
   }
   }
 
-  //ポストバックした時用
+  //ポストバックした時用　ポストバック時のメッセージに反応してしまうため
   if(event.message.text == "お気に入りに登録する。" || event.message.text == "お気に入りから削除する"){
     return null;
   }
@@ -122,6 +128,7 @@ async function handleEvent(event) {
 
   ///メニューから位置情報で検索ボタンを押したとき
   if(event.message.text == '位置情報から検索'){
+    //位置情報を送信リンク付与　TODO　外だし希望
     return client.replyMessage(event.replyToken, {
       "type": "flex",
   "altText": "#",
@@ -180,7 +187,6 @@ async function handleEvent(event) {
   url = 'https://api.gnavi.co.jp/RestSearchAPI/v3/?keyid=6eecd3af974fcc7fa63d6ab8139269e6&latitude=' + event.message.latitude + '&longitude=' + event.message.longitude + '&freeword=インドカレー&range=4';
   const encodeUrl = encodeURI(url);
 
-  //test
   try{
     // ぐるなびAPIに問い合わせ
     var response = await axios.get(encodeUrl)
@@ -287,8 +293,6 @@ if(event.message.text == 'お気に入りを表示'){
               }
             });
             arrnum++;
-            console.log(arrnum);
-            
      }
     }
     //　一件も登録されていない場合

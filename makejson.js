@@ -129,6 +129,7 @@ exports.makeJson = function(curry_pic,curry_url,shop_name,address,opentime,shopi
   contentpart[i].body.contents[1].contents[0].contents[1].text = address[i]
   contentpart[i].body.contents[1].contents[1].contents[1].text = opentime[i];
   contentpart[i].footer.contents[0].action.uri = curry_url[i]
+  //PostBack用にカンマ区切りで属性付与
   contentpart[i].footer.contents[1].action.data = shopid[i] + "," +"Delete"
   baseJson.contents.contents.push(contentpart[i])
   }
