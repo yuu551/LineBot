@@ -182,7 +182,7 @@ async function handleEvent(event) {
   if(event.message.type == 'location'){
   
   // ぐるなびAPIを使うためのURLに経緯を加える
-  url = 'https://api.gnavi.co.jp/RestSearchAPI/v3/?keyid=6eecd3af974fcc7fa63d6ab8139269e6&latitude=' + event.message.latitude + '&longitude=' + event.message.longitude + '&freeword=インドカレー&range=4';
+  url = 'https://api.gnavi.co.jp/RestSearchAPI/v3/?keyid=136eb2d39fbee1e355f582e1566a49b8&latitude=' + event.message.latitude + '&longitude=' + event.message.longitude + '&freeword=インドカレー&range=4';
   const encodeUrl = encodeURI(url);
 
   try{
@@ -263,7 +263,7 @@ if(event.message.text == 'お気に入りを表示'){
      {  
         
           // ぐるなびAPIを使うためのURLに経緯を加える
-         url = 'https://api.gnavi.co.jp/RestSearchAPI/v3/?keyid=6eecd3af974fcc7fa63d6ab8139269e6&id=' + Table.records[i].fields.ShopId;
+         url = 'https://api.gnavi.co.jp/RestSearchAPI/v3/?keyid=136eb2d39fbee1e355f582e1566a49b8&id=' + Table.records[i].fields.ShopId;
          const encodeUrl = encodeURI(url);
             // ぐるなびAPIに問い合わせ
               await axios.get(encodeUrl)
@@ -323,7 +323,7 @@ if(event.message.text == "liff")
 
 //地名で検索時。基本的にメッセージをすべて拾ってしまうためイベントを発生したい場合はここより上で設定。
 if(event.type == 'message'){
-  url = 'https://api.gnavi.co.jp/RestSearchAPI/v3/?keyid=6eecd3af974fcc7fa63d6ab8139269e6&freeword_condition=1&freeword=インドカレー,'+event.message.text
+  url = 'https://api.gnavi.co.jp/RestSearchAPI/v3/?keyid=136eb2d39fbee1e355f582e1566a49b8&freeword_condition=1&freeword=インドカレー,'+event.message.text
   const encodeUrl = encodeURI(url);
 
   try{
