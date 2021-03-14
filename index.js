@@ -323,7 +323,7 @@ if(event.message.text == "liff")
 
 //地名で検索時。基本的にメッセージをすべて拾ってしまうためイベントを発生したい場合はここより上で設定。
 if(event.type == 'message'){
-  url = 'https://api.gnavi.co.jp/RestSearchAPI/v3/?keyid=136eb2d39fbee1e355f582e1566a49b8&freeword_condition=1&freeword=インドカレー,'+event.message.text
+  url = 'http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=fca645de230dd653&keyword=カレー '+event.message.text
   const encodeUrl = encodeURI(url);
 
   try{
@@ -337,17 +337,16 @@ if(event.type == 'message'){
   }                  
 
   //レスポンスの中からを探索
-  for(var num = 0; num < response.data.rest.length; num++){
+  for(var num = 0; num < response.data.results.shop.length; num++){
    
     hitnum.push(num)
-    shop_name.push(response.data.rest[num].name)
-    shop_address.push(response.data.rest[num].address)
-    opentime.push(response.data.rest[num].opentime)
-    curry_url.push(response.data.rest[num].url_mobile);
-    curry_pic.push(response.data.rest[num].image_url.shop_image1);
-    address.push(response.data.rest[num].address);
-    phonenumber.push(response.data.rest[num].tel)
-    shopid.push(response.data.rest[num].id+","+"Insert")
+    shop_name.push(response.data.results.shop[num].name)
+    shop_address.push(response.data.results.shop[num].address)
+    opentime.push(response.data.results.shop[num].open)
+    curry_url.push(response.data.results.shop[num].urls.pc);
+    curry_pic.push(response.data.results.shop[num].photo.pc.l);
+    address.push(response.data.results.shop[num].address);
+    shopid.push(response.data.results.shop[num].id+","+"Insert")
     if(!curry_pic[num]){
       curry_pic[num] = 'https://tblg.k-img.com/restaurant/images/Rvw/18549/640x640_rect_18549970.jpg'
     }
@@ -356,7 +355,7 @@ if(event.type == 'message'){
     }
     
   }
-  if(response.data.rest.length >2){
+  if(response.data.results.shop.length >2){
     msg = curmsg.replymessage(curry_pic,curry_url,shop_name,address,opentime,shopid);
     // ヒットしたインドカレー店の住所をLINE botに返す
     return client.replyMessage(event.replyToken,[{
@@ -365,7 +364,7 @@ if(event.type == 'message'){
     },msg
   ]);
     }
-    else if(response.data.rest.length >1){
+    else if(response.data.results.shop.length >1){
       msg = curmsg.replymessage2(curry_pic,curry_url,shop_name,address,opentime,shopid);
       // ヒットしたインドカレー店の住所をLINE botに返す
       return client.replyMessage(event.replyToken,[{
@@ -374,7 +373,7 @@ if(event.type == 'message'){
       },msg
     ]);
       }
-      else if(response.data.rest.length >0){
+      else if(response.data.results.shop.length >0){
         msg = curmsg.replymessage1(curry_pic,curry_url,shop_name,address,opentime,shopid);
         // ヒットしたインドカレー店の住所をLINE botに返す
         return client.replyMessage(event.replyToken,[{
