@@ -323,7 +323,7 @@ if(event.message.text == "liff")
 
 //地名で検索時。基本的にメッセージをすべて拾ってしまうためイベントを発生したい場合はここより上で設定。
 if(event.type == 'message'){
-  url = 'http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=fca645de230dd653&keyword=カレー '+event.message.text
+  url = 'http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=fca645de230dd653&format=json&keyword=カレー '+event.message.text
   const encodeUrl = encodeURI(url);
 
   try{
