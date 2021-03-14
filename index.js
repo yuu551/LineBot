@@ -335,7 +335,7 @@ if(event.type == 'message'){
       text: '申し訳ございません。該当店舗は存在しません。。。'
     });
   }                  
-
+  console.log(response);
   //レスポンスの中からを探索
   for(var num = 0; num < response.data.results.shop.length; num++){
    
